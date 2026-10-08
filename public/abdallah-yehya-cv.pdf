@@ -1,0 +1,84 @@
+
+
+Abdallah Yehya Soliman 
+Data Scientist | AI Engineer 
+abdallah.yehya02@gmail.com   +20 128 872 8317   Agouza-Giza-Egypt   |   linkedin.com/in/abdallah-yehya 
+Summary 
+Computer Science graduate and AI Engineer with hands-on experience developing end-to-end AI systems across 
+machine learning, deep learning, NLP, computer vision, and LLM applications. Experienced in building RAG pipelines, 
+agentic AI workflows, natural-language-to-SQL systems, and AI-powered applications, with a strong foundation in 
+Python, SQL, data processing, model evaluation, and backend development. Experienced in applying AI to practical 
+problems through projects involving LLMs, retrieval, semantic search, database reasoning, and multi-model AI 
+systems. 
+Experience 
+Business Intelligence Intern at Coca-Cola Egypt (Aug.2021-Sep.2021) 
+• Applied machine learning techniques to an AI-based analytics project, contributing to fraud detection improvements 
+and reducing fraudulent activity by 5%. 
+• Built and trained an image classification model to recognize and categorize multiple product types, supporting 
+automated data-driven workflows. 
+• Performed data preprocessing, feature extraction, and model evaluation to improve classification accuracy. 
+• Analyzed structured datasets and created interactive dashboards using Power BI, enabling stakeholders to make 
+data-driven decisions. 
+• Collaborated with cross-functional teams to translate business requirements into machine learning solutions. 
+Web Developer (Freelance) Modern Broadcast Center (Jan.2025-Mar.2025) 
+• Developed and deployed a full-stack web application using Next.js, Prisma ORM, and PostgreSQL (Supabase), 
+implementing product management and checkout workflows. 
+• Ensured responsive design and performance optimization for scalable deployment. 
+Backend Intern at Trans-IT (Sep.2023-Nov.2023) 
+• Strengthened problem-solving skills through backend development using data structures, algorithms, and OOP. 
+• Designed and managed relational databases using SQL Server, developing a database-driven Supermarket 
+Management System covering inventory and sales operations. 
+Education 
+Bachelor’s degree in computer science (Ain-Shams University (2020-2024)) 
+• Department: Computer Science 
+• GPA: 2.95 
+Graduation Project 
+Smart School System (Grade: A) 
+• Designed and implemented an end-to-end AI system applying machine learning and deep learning techniques for 
+student monitoring and safety. 
+• Developed a face recognition pipeline using a Siamese network for accurate student identification. 
+• Integrated a liveness detection model to prevent faking attendance, enhancing system reliability. 
+• Built a violence detection model using sequence-based deep learning to monitor behavior and trigger alerts. 
+• Implemented a uniform compliance classification model using supervised learning techniques. 
+Academic & AI Projects 
+Agentic NL2SQL System 
+• Built an agentic AI system that translates natural-language questions into executable SQL queries across a multi-
+table relational database. 
+• Implemented metadata-driven schema routing and sub-schema selection to identify relevant tables, columns, and 
+relationships before SQL generation. 
+• Designed SQL generation, validation, self-correction, and natural-language answer workflows for reliable database 
+querying. 
+• Built the application with Next.js, TypeScript, Supabase/PostgreSQL, and an LLM-based backend workflow. 
+Arabic Sentiment Analysis (2023-2024) 
+• Built an end-to-end NLP pipeline including tokenization, lemmatization, stop-word removal, data augmentation, and 
+emoji polarity labeling. 
+• Trained and evaluated RNN, LSTM, and Transformer-based models for sentiment classification. 
+ 
+ 
+
+News Group Classification (2022-2023) 
+• Built a text classification pipeline using NLTK and Scikit-learn, applying tokenization, lemmatization, stemming, stop-
+word removal, and data augmentation. 
+• Extracted TF-IDF features and trained Logistic Regression, SVM, and KNN models; evaluated Accuracy, Precision, 
+Recall, and F1-score. 
+Movies Popularity Prediction (2022-2023) 
+• Developed a machine learning regression pipeline with preprocessing and feature engineering using Scikit-learn. 
+• Trained and compared Linear Regression, Ridge Regression, and Random Forest models. 
+Skills 
+Technical Skills 
+• Programming Languages: Python, Java, JavaScript, TypeScript, C++, C# 
+• AI & Machine Learning: Supervised & unsupervised learning, deep learning, NLP, computer vision, model 
+evaluation, feature engineering 
+• Generative AI & LLMs: LLMs, RAG, embeddings, semantic search, prompt engineering, AI agents, agentic 
+workflows, NL2SQL 
+• Data & Databases: SQL, PostgreSQL, Supabase, SQL Server, data preprocessing, data analysis, statistics 
+• Frameworks & Tools: Scikit-learn, TensorFlow, PyTorch, NLTK, Next.js, FastAPI, Prisma, Git/GitHub, Docker, Power 
+BI 
+Soft Skills 
+• Strong problem-solving and analytical abilities 
+• Ability to work independently and collaboratively in teams 
+• Effective communication for technical and non-technical audiences 
+• Quick learner with eagerness to adopt new technologies and AI concepts 
+Languages 
+• Arabic: Native (C2) 
+• English: Professional proficiency (C1) 
