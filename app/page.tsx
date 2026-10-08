@@ -15,8 +15,9 @@ export default function Portfolio() {
       id: 'jobhunt',
       title: 'JobHunt',
       subtitle: 'Autonomous Job Discovery Agent',
-      description:
-        'An autonomous agent that discovers and curates relevant job opportunities daily, analyzing market trends and matching positions to your profile.',
+      mainIdea: 'An automated job-discovery agent that searches multiple sources every morning and filters and ranks opportunities based on my profile.',
+      problem: 'Searching for jobs manually means repeatedly checking different websites, removing irrelevant or closed positions, interpreting remote locations, and comparing listings against my background.',
+      solution: 'I built a local automated pipeline that collects jobs from Greenhouse/Ashby boards, Remote OK, Remotive, Himalayas, and We Work Remotely. It normalizes different formats, filters old and closed listings, interprets remote locations, checks relevance, and scores the remaining opportunities so I can focus on the most relevant jobs.',
       technologies: ['AI Agents', 'LLMs', 'Job APIs', 'Next.js'],
       color: 'from-blue-50 to-indigo-50',
       accent: 'border-blue-200',
@@ -25,8 +26,9 @@ export default function Portfolio() {
       id: 'fairprice',
       title: 'Fair Price Egypt',
       subtitle: 'Technology Pricing Intelligence',
-      description:
-        'An AI-driven product that estimates and predicts technology prices across Egyptian markets using data analysis and market intelligence.',
+      mainIdea: 'A product that helps Egyptian consumers understand whether a technology product price is reasonable compared with the local market.',
+      problem: 'Prices vary across Egyptian sellers, and listings may represent different variants, storage or RAM configurations, or VAT conditions. Comparing numbers alone can therefore be misleading.',
+      solution: 'I built the foundation for separating products, variants, and individual market listings so the system can support fair-price estimation. It also includes photo-based product search and keeps VAT-inclusive, VAT-exclusive, and unknown prices distinct. I explored collection with Crawlee and Playwright across Egyptian retailers; the current product experience uses mock data while the collection architecture is developed.',
       technologies: ['Data Analysis', 'ML Models', 'Price Forecasting', 'APIs'],
       color: 'from-amber-50 to-orange-50',
       accent: 'border-amber-200',
@@ -35,8 +37,9 @@ export default function Portfolio() {
       id: 'wellness',
       title: 'AI Wellness Egy',
       subtitle: 'AI-Powered Wellness Platform',
-      description:
-        'A wellness platform leveraging AI to provide personalized insights, mood tracking, and health recommendations with user consent and privacy by design.',
+      mainIdea: 'A wellness application that combines a structured user experience with AI capabilities instead of treating the product as a simple chatbot.',
+      problem: 'AI wellness applications can expose personal information to an AI without enough structure around authentication, consent, or how that information is handled.',
+      solution: 'I built the application progressively around Authentication → Consent → Profile → Mood Check-in → Dashboard. It uses Supabase authentication and a database-backed workflow, with a structured 1–5 mood scale and backend validation that rejects unsupported client data. The AI functionality is introduced within explicit boundaries rather than acting as a medical or diagnostic system.',
       technologies: ['AI/ML', 'User Profiles', 'Mood Analytics', 'Privacy'],
       color: 'from-emerald-50 to-teal-50',
       accent: 'border-emerald-200',
@@ -45,8 +48,9 @@ export default function Portfolio() {
       id: 'nl2sql',
       title: 'NL2SQL Analytics Platform',
       subtitle: 'Agentic Database Query System',
-      description:
-        'A deployed agentic system that translates natural-language questions into executable SQL queries across multi-table databases, with self-correction and metadata-driven routing.',
+      mainIdea: 'An agentic analytics platform that lets users ask questions about a database in natural language and receive answers without writing SQL.',
+      problem: 'Manual database work requires understanding schema and writing SQL. Direct LLM-generated SQL can reference the wrong tables, fail validation, or contain unsafe operations.',
+      solution: 'I built a multi-step NL2SQL pipeline that uses metadata to identify relevant tables, generates and validates SQL, and executes it in a read-only environment. When a query fails, the system uses the error and previous context to correct it and retry. It includes a metadata registry for a 20-table shop database with approximately 94,000 deterministic rows, plus isolated CSV/SQL uploads, and is deployed with Next.js, TypeScript, Supabase/PostgreSQL, and Groq.',
       technologies: ['NL2SQL', 'LLMs', 'PostgreSQL', 'Next.js', 'Supabase'],
       color: 'from-purple-50 to-pink-50',
       accent: 'border-purple-200',
@@ -55,8 +59,9 @@ export default function Portfolio() {
       id: 'smartschool',
       title: 'Smart School',
       subtitle: 'End-to-End Student Monitoring System (Grade: A)',
-      description:
-        'A graduation project applying deep learning for student monitoring: face recognition via Siamese networks, liveness detection to prevent spoofing, violence detection for safety, and uniform compliance classification.',
+      mainIdea: 'A school management system exploring how machine learning and computer vision could automate attendance and monitor specific activities.',
+      problem: 'Traditional attendance requires manual work, while confirming presence and detecting events such as violence from images or video requires more than a simple image classifier.',
+      solution: 'I built a Python and SQL Server application with several computer-vision models: Siamese-network one-shot face recognition using MobileNetV2 features, MobileNetV2 with an RNN for liveness detection, and DenseNet-121 with an LSTM for temporal violence detection. The project received Grade A as my graduation project.',
       technologies: ['Deep Learning', 'Computer Vision', 'Siamese Networks', 'Flask'],
       color: 'from-rose-50 to-red-50',
       accent: 'border-rose-200',
@@ -306,7 +311,20 @@ export default function Portfolio() {
                   <p className="text-slate-600">{project.subtitle}</p>
                 </div>
               </div>
-              <p className="text-slate-700 mb-6 leading-relaxed">{project.description}</p>
+              <div className="grid gap-5 mb-6 md:grid-cols-3">
+                <div>
+                  <p className="text-xs font-semibold tracking-[0.18em] text-slate-500 mb-2">MAIN IDEA</p>
+                  <p className="text-slate-700 leading-relaxed">{project.mainIdea}</p>
+                </div>
+                <div>
+                  <p className="text-xs font-semibold tracking-[0.18em] text-slate-500 mb-2">THE PROBLEM</p>
+                  <p className="text-slate-700 leading-relaxed">{project.problem}</p>
+                </div>
+                <div>
+                  <p className="text-xs font-semibold tracking-[0.18em] text-slate-500 mb-2">THE SOLUTION</p>
+                  <p className="text-slate-700 leading-relaxed">{project.solution}</p>
+                </div>
+              </div>
               <div className="flex flex-wrap gap-2">
                 {project.technologies.map((tech) => (
                   <span
