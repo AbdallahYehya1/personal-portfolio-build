@@ -9,6 +9,9 @@ export default function Portfolio() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
   const [formMessage, setFormMessage] = useState('')
+  const [openProject, setOpenProject] = useState<string | null>(null)
+  const [openExperience, setOpenExperience] = useState<number | null>(null)
+  const [isEducationOpen, setIsEducationOpen] = useState(false)
 
   const projects = [
     {
@@ -19,6 +22,8 @@ export default function Portfolio() {
       problem: 'Searching for jobs manually means repeatedly checking different websites, removing irrelevant or closed positions, interpreting remote locations, and comparing listings against my background.',
       solution: 'I built a local automated pipeline that collects jobs from Greenhouse/Ashby boards, Remote OK, Remotive, Himalayas, and We Work Remotely. It normalizes different formats, filters old and closed listings, interprets remote locations, checks relevance, and scores the remaining opportunities so I can focus on the most relevant jobs.',
       technologies: ['AI Agents', 'LLMs', 'Job APIs', 'Next.js'],
+      github: '',
+      deployed: '',
       color: 'from-blue-50 to-indigo-50',
       accent: 'border-blue-200',
     },
@@ -30,6 +35,8 @@ export default function Portfolio() {
       problem: 'Prices vary across Egyptian sellers, and listings may represent different variants, storage or RAM configurations, or VAT conditions. Comparing numbers alone can therefore be misleading.',
       solution: 'I built the foundation for separating products, variants, and individual market listings so the system can support fair-price estimation. It also includes photo-based product search and keeps VAT-inclusive, VAT-exclusive, and unknown prices distinct. I explored collection with Crawlee and Playwright across Egyptian retailers; the current product experience uses mock data while the collection architecture is developed.',
       technologies: ['Data Analysis', 'ML Models', 'Price Forecasting', 'APIs'],
+      github: '',
+      deployed: '',
       color: 'from-amber-50 to-orange-50',
       accent: 'border-amber-200',
     },
@@ -41,6 +48,8 @@ export default function Portfolio() {
       problem: 'AI wellness applications can expose personal information to an AI without enough structure around authentication, consent, or how that information is handled.',
       solution: 'I built the application progressively around Authentication → Consent → Profile → Mood Check-in → Dashboard. It uses Supabase authentication and a database-backed workflow, with a structured 1–5 mood scale and backend validation that rejects unsupported client data. The AI functionality is introduced within explicit boundaries rather than acting as a medical or diagnostic system.',
       technologies: ['AI/ML', 'User Profiles', 'Mood Analytics', 'Privacy'],
+      github: '',
+      deployed: '',
       color: 'from-emerald-50 to-teal-50',
       accent: 'border-emerald-200',
     },
@@ -52,6 +61,8 @@ export default function Portfolio() {
       problem: 'Manual database work requires understanding schema and writing SQL. Direct LLM-generated SQL can reference the wrong tables, fail validation, or contain unsafe operations.',
       solution: 'I built a multi-step NL2SQL pipeline that uses metadata to identify relevant tables, generates and validates SQL, and executes it in a read-only environment. When a query fails, the system uses the error and previous context to correct it and retry. It includes a metadata registry for a 20-table shop database with approximately 94,000 deterministic rows, plus isolated CSV/SQL uploads, and is deployed with Next.js, TypeScript, Supabase/PostgreSQL, and Groq.',
       technologies: ['NL2SQL', 'LLMs', 'PostgreSQL', 'Next.js', 'Supabase'],
+      github: '',
+      deployed: '',
       color: 'from-purple-50 to-pink-50',
       accent: 'border-purple-200',
     },
@@ -63,6 +74,8 @@ export default function Portfolio() {
       problem: 'Traditional attendance requires manual work, while confirming presence and detecting events such as violence from images or video requires more than a simple image classifier.',
       solution: 'I built a Python and SQL Server application with several computer-vision models: Siamese-network one-shot face recognition using MobileNetV2 features, MobileNetV2 with an RNN for liveness detection, and DenseNet-121 with an LSTM for temporal violence detection. The project received Grade A as my graduation project.',
       technologies: ['Deep Learning', 'Computer Vision', 'Siamese Networks', 'Flask'],
+      github: '',
+      deployed: '',
       color: 'from-rose-50 to-red-50',
       accent: 'border-rose-200',
     },
@@ -300,87 +313,64 @@ export default function Portfolio() {
           <h3 className="text-4xl md:text-5xl font-bold tracking-tight mb-5">I build systems that make difficult work feel simple.</h3>
           <p className="text-lg text-slate-600 leading-relaxed">These projects are not just demos. Each one started with a messy, real-world problem and became an exercise in making AI reliable, useful, and safe enough to ship.</p>
         </div>
-        <div className="space-y-8">
-          {projects.map((project, index) => (
-            <article
-              key={project.id}
-              className={`group relative overflow-hidden border border-slate-200 rounded-2xl p-7 md:p-10 hover:shadow-xl transition-all duration-300 bg-gradient-to-br ${project.color} animate-in fade-in slide-in-from-bottom-4 duration-700`}
-              style={{ animationDelay: `${index * 100}ms` }}
-            >
-              <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-5 mb-8">
-                <div className="flex gap-5 items-start">
-                  <span className="text-sm font-bold text-slate-400 pt-1">0{index + 1}</span>
-                  <div>
-                    <h4 className="text-2xl md:text-3xl font-bold text-slate-900 mb-2">{project.title}</h4>
-                    <p className="text-slate-600 font-medium">{project.subtitle}</p>
+        <div className="divide-y divide-slate-200 border-y border-slate-200">
+          {projects.map((project, index) => {
+            const isOpen = openProject === project.id
+            return (
+              <article key={project.id} className="py-6">
+                <button type="button" onClick={() => setOpenProject(isOpen ? null : project.id)} aria-expanded={isOpen} className="w-full text-left flex items-center justify-between gap-5 group">
+                  <span className="flex items-start gap-5">
+                    <span className="text-sm font-bold text-slate-400 pt-1">0{index + 1}</span>
+                    <span>
+                      <span className="block text-2xl font-bold text-slate-900 group-hover:text-blue-700 transition-colors">{project.title}</span>
+                      <span className="block text-slate-600 mt-1">{project.subtitle}</span>
+                    </span>
+                  </span>
+                  <ChevronDown className={`shrink-0 transition-transform ${isOpen ? 'rotate-180' : ''}`} aria-hidden="true" />
+                </button>
+                {isOpen && (
+                  <div className="mt-7 ml-9 md:ml-12 max-w-4xl animate-in fade-in slide-in-from-top-2 duration-300">
+                    <p className="text-lg text-slate-800 leading-relaxed mb-6"><span className="font-semibold text-slate-950">The idea. </span>{project.mainIdea} <span className="font-semibold text-slate-950">The challenge. </span>{project.problem} <span className="font-semibold text-slate-950">What I built. </span>{project.solution}</p>
+                    <div className="flex flex-wrap gap-2 mb-5">{project.technologies.map((tech) => <span key={tech} className="px-3 py-1 bg-slate-100 text-slate-700 text-xs rounded-full font-semibold">{tech}</span>)}</div>
+                    <div className="flex flex-wrap gap-4 text-sm font-semibold">
+                      {project.github && <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:underline">View GitHub repo ↗</a>}
+                      {project.deployed && <a href={project.deployed} target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:underline">Open deployed project ↗</a>}
+                      {!project.github && !project.deployed && <span className="text-slate-500 font-normal">Project links coming soon</span>}
+                    </div>
                   </div>
-                </div>
-                <div className="flex flex-wrap gap-2 md:max-w-xs md:justify-end">
-                  {project.technologies.map((tech) => (
-                    <span key={tech} className="px-3 py-1 bg-white/70 text-slate-700 text-xs rounded-full border border-slate-200 font-semibold">{tech}</span>
-                  ))}
-                </div>
-              </div>
-              <div className="md:pl-12 max-w-4xl">
-                <p className="text-lg md:text-xl text-slate-800 leading-relaxed">
-                  <span className="font-semibold text-slate-950">The idea. </span>{project.mainIdea} <span className="font-semibold text-slate-950">The challenge. </span>{project.problem} <span className="font-semibold text-slate-950">What I built. </span>{project.solution}
-                </p>
-              </div>
-            </article>
-          ))}
+                )}
+              </article>
+            )
+          })}
         </div>
       </section>
 
       {/* Experience Section */}
       <section id="experience" className="max-w-5xl mx-auto px-6 py-16 border-t border-slate-200">
         <h3 className="text-3xl font-bold tracking-tight mb-12">Experience</h3>
-        <div className="space-y-8">
-          {experience.map((role, index) => (
-            <div
-              key={index}
-              className="border-l-2 border-slate-300 pl-6 pb-8 last:pb-0 animate-in fade-in slide-in-from-left-4 duration-700"
-              style={{ animationDelay: `${index * 100}ms` }}
-            >
-              <div className="flex justify-between items-start mb-2 gap-4">
-                <div>
-                  <h4 className="text-xl font-bold text-slate-900">{role.title}</h4>
-                  <p className="text-slate-600 font-medium">{role.company}</p>
-                </div>
-                <span className="text-sm text-slate-500 whitespace-nowrap">{role.period}</span>
-              </div>
-              <p className="text-slate-600 leading-relaxed mb-3">{role.description}</p>
-              <div className="flex flex-wrap gap-2">
-                {role.technologies.map((tech) => (
-                  <span
-                    key={tech}
-                    className="px-2 py-1 bg-slate-100 text-slate-700 text-xs rounded font-medium"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
+        <div className="divide-y divide-slate-200 border-y border-slate-200">
+          {experience.map((role, index) => {
+            const isOpen = openExperience === index
+            return <div key={index} className="py-6">
+              <button type="button" onClick={() => setOpenExperience(isOpen ? null : index)} aria-expanded={isOpen} className="w-full text-left flex items-center justify-between gap-4 group">
+                <span><span className="block text-xl font-bold text-slate-900 group-hover:text-blue-700 transition-colors">{role.title}</span><span className="block text-slate-600 font-medium mt-1">{role.company}</span></span>
+                <span className="flex items-center gap-4"><span className="text-sm text-slate-500 whitespace-nowrap">{role.period}</span><ChevronDown className={`shrink-0 transition-transform ${isOpen ? 'rotate-180' : ''}`} aria-hidden="true" /></span>
+              </button>
+              {isOpen && <div className="mt-5 max-w-3xl pl-0 animate-in fade-in slide-in-from-top-2 duration-300"><p className="text-slate-600 leading-relaxed mb-4">{role.description}</p><div className="flex flex-wrap gap-2">{role.technologies.map((tech) => <span key={tech} className="px-2 py-1 bg-slate-100 text-slate-700 text-xs rounded font-medium">{tech}</span>)}</div></div>}
             </div>
-          ))}
+          })}
         </div>
       </section>
 
       {/* Education Section */}
       <section className="max-w-5xl mx-auto px-6 py-16 border-t border-slate-200">
         <h3 className="text-3xl font-bold tracking-tight mb-8">Education</h3>
-        <div className="bg-slate-50 border border-slate-200 rounded-xl p-8">
-          <h4 className="text-xl font-bold text-slate-900 mb-2">
-            Bachelor&apos;s Degree in Computer Science
-          </h4>
-          <p className="text-slate-600 font-medium mb-4">
-            Ain-Shams University, Cairo — 2020–2024
-          </p>
-          <p className="text-slate-600 mb-4">GPA: 2.95</p>
-          <p className="text-slate-700">
-            <span className="font-semibold">Graduation Project (Grade: A):</span> Smart School System
-            — An end-to-end AI system for student monitoring and safety, combining face recognition,
-            liveness detection, violence detection, and uniform compliance classification using deep
-            learning.
-          </p>
+        <div className="border-y border-slate-200">
+          <button type="button" onClick={() => setIsEducationOpen(!isEducationOpen)} aria-expanded={isEducationOpen} className="w-full text-left py-6 flex items-center justify-between gap-4 group">
+            <span><span className="block text-xl font-bold text-slate-900 group-hover:text-blue-700 transition-colors">Bachelor&apos;s Degree in Computer Science</span><span className="block text-slate-600 font-medium mt-1">Ain-Shams University, Cairo — 2020–2024</span></span>
+            <ChevronDown className={`shrink-0 transition-transform ${isEducationOpen ? 'rotate-180' : ''}`} aria-hidden="true" />
+          </button>
+          {isEducationOpen && <div className="pb-7 max-w-3xl animate-in fade-in slide-in-from-top-2 duration-300"><p className="text-slate-600 mb-4">GPA: 2.95</p><p className="text-slate-700"><span className="font-semibold">Graduation Project (Grade: A):</span> Smart School System — An end-to-end AI system for student monitoring and safety, combining face recognition, liveness detection, violence detection, and uniform compliance classification using deep learning.</p></div>}
         </div>
       </section>
 
