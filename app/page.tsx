@@ -283,10 +283,10 @@ export default function Portfolio() {
         <div className="grid md:grid-cols-2 gap-12">
           <div>
             <p className="text-lg text-slate-600 leading-relaxed mb-6">
-              Computer Science graduate from Ain-Shams University with hands-on experience building end-to-end AI systems, production backends, and full-stack applications. I focus on translating complex problems into scalable technical solutions.
+              I am a Computer Science graduate and AI engineer who enjoys taking ambiguous, high-friction problems and turning them into dependable products. My work sits at the intersection of machine learning, backend engineering, and thoughtful user experience: I do not stop at a model or a prototype; I think through the data, the failure cases, the security boundaries, and how a real person will use the result.
             </p>
             <p className="text-slate-600 leading-relaxed">
-              My work spans machine learning, deep learning, NLP, computer vision, and LLM applications—with practical experience shipping agentic workflows, RAG pipelines, NL2SQL systems, and modern web applications to production.
+              I have built agentic job-search workflows, natural-language database systems, computer-vision models for school safety, market-intelligence tools, and privacy-aware wellness applications. These projects taught me to make AI useful rather than ornamental: ground outputs in metadata, validate what the system is allowed to do, design for uncertain data, and keep the product understandable. I am now looking for opportunities where I can contribute across the full lifecycle—from problem framing and system design to implementation, evaluation, and deployment.
             </p>
           </div>
           <div className="space-y-6">
@@ -330,12 +330,16 @@ export default function Portfolio() {
                 </button>
                 {isOpen && (
                   <div className="mt-7 ml-9 md:ml-12 max-w-4xl animate-in fade-in slide-in-from-top-2 duration-300">
-                    <p className="text-lg text-slate-800 leading-relaxed mb-6"><span className="font-semibold text-slate-950">The idea. </span>{project.mainIdea} <span className="font-semibold text-slate-950">The challenge. </span>{project.problem} <span className="font-semibold text-slate-950">What I built. </span>{project.solution}</p>
+                    <div className="grid gap-6 md:grid-cols-3 mb-7">
+                      <div><h5 className="text-xs font-bold tracking-[0.18em] text-blue-700 mb-2">MAIN IDEA</h5><p className="text-slate-700 leading-relaxed">{project.mainIdea}</p></div>
+                      <div><h5 className="text-xs font-bold tracking-[0.18em] text-blue-700 mb-2">THE PROBLEM</h5><p className="text-slate-700 leading-relaxed">{project.problem}</p></div>
+                      <div><h5 className="text-xs font-bold tracking-[0.18em] text-blue-700 mb-2">THE SOLUTION</h5><p className="text-slate-700 leading-relaxed">{project.solution}</p></div>
+                    </div>
                     <div className="flex flex-wrap gap-2 mb-5">{project.technologies.map((tech) => <span key={tech} className="px-3 py-1 bg-slate-100 text-slate-700 text-xs rounded-full font-semibold">{tech}</span>)}</div>
                     <div className="flex flex-wrap gap-4 text-sm font-semibold">
                       {project.github && <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:underline">View GitHub repo ↗</a>}
                       {project.deployed && <a href={project.deployed} target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:underline">Open deployed project ↗</a>}
-                      {!project.github && !project.deployed && <span className="text-slate-500 font-normal">Project links coming soon</span>}
+                      {!project.github && !project.deployed && <span className="text-slate-500 font-normal">GitHub and deployment links will appear here once added</span>}
                     </div>
                   </div>
                 )}
