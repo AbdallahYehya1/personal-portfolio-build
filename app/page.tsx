@@ -294,48 +294,39 @@ export default function Portfolio() {
       </section>
 
       {/* Selected Work Section */}
-      <section id="work" className="max-w-5xl mx-auto px-6 py-16 border-t border-slate-200">
-        <h3 className="text-3xl font-bold tracking-tight mb-12">Selected Work</h3>
-        <div className="space-y-6">
+      <section id="work" className="max-w-5xl mx-auto px-6 py-20 border-t border-slate-200">
+        <div className="max-w-2xl mb-12">
+          <p className="text-sm font-semibold tracking-[0.2em] text-blue-700 mb-4">SELECTED WORK</p>
+          <h3 className="text-4xl md:text-5xl font-bold tracking-tight mb-5">I build systems that make difficult work feel simple.</h3>
+          <p className="text-lg text-slate-600 leading-relaxed">These projects are not just demos. Each one started with a messy, real-world problem and became an exercise in making AI reliable, useful, and safe enough to ship.</p>
+        </div>
+        <div className="space-y-8">
           {projects.map((project, index) => (
-            <div
+            <article
               key={project.id}
-              className={`group border border-slate-200 rounded-xl p-8 hover:shadow-lg transition-all duration-300 bg-gradient-to-br ${project.color} animate-in fade-in slide-in-from-bottom-4 duration-700`}
+              className={`group relative overflow-hidden border border-slate-200 rounded-2xl p-7 md:p-10 hover:shadow-xl transition-all duration-300 bg-gradient-to-br ${project.color} animate-in fade-in slide-in-from-bottom-4 duration-700`}
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              <div className="flex justify-between items-start mb-4">
-                <div>
-                  <h4 className="text-2xl font-bold text-slate-900 mb-1">
-                    {project.title}
-                  </h4>
-                  <p className="text-slate-600">{project.subtitle}</p>
+              <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-5 mb-8">
+                <div className="flex gap-5 items-start">
+                  <span className="text-sm font-bold text-slate-400 pt-1">0{index + 1}</span>
+                  <div>
+                    <h4 className="text-2xl md:text-3xl font-bold text-slate-900 mb-2">{project.title}</h4>
+                    <p className="text-slate-600 font-medium">{project.subtitle}</p>
+                  </div>
+                </div>
+                <div className="flex flex-wrap gap-2 md:max-w-xs md:justify-end">
+                  {project.technologies.map((tech) => (
+                    <span key={tech} className="px-3 py-1 bg-white/70 text-slate-700 text-xs rounded-full border border-slate-200 font-semibold">{tech}</span>
+                  ))}
                 </div>
               </div>
-              <div className="grid gap-5 mb-6 md:grid-cols-3">
-                <div>
-                  <p className="text-xs font-semibold tracking-[0.18em] text-slate-500 mb-2">MAIN IDEA</p>
-                  <p className="text-slate-700 leading-relaxed">{project.mainIdea}</p>
-                </div>
-                <div>
-                  <p className="text-xs font-semibold tracking-[0.18em] text-slate-500 mb-2">THE PROBLEM</p>
-                  <p className="text-slate-700 leading-relaxed">{project.problem}</p>
-                </div>
-                <div>
-                  <p className="text-xs font-semibold tracking-[0.18em] text-slate-500 mb-2">THE SOLUTION</p>
-                  <p className="text-slate-700 leading-relaxed">{project.solution}</p>
-                </div>
+              <div className="md:pl-12 max-w-4xl">
+                <p className="text-lg md:text-xl text-slate-800 leading-relaxed">
+                  <span className="font-semibold text-slate-950">The idea. </span>{project.mainIdea} <span className="font-semibold text-slate-950">The challenge. </span>{project.problem} <span className="font-semibold text-slate-950">What I built. </span>{project.solution}
+                </p>
               </div>
-              <div className="flex flex-wrap gap-2">
-                {project.technologies.map((tech) => (
-                  <span
-                    key={tech}
-                    className="px-3 py-1 bg-white bg-opacity-60 text-slate-700 text-sm rounded-full border border-slate-200 font-medium"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
+            </article>
           ))}
         </div>
       </section>
