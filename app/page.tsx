@@ -84,8 +84,9 @@ export default function Portfolio() {
   const experience = [
     {
       title: 'Web Developer (Freelance)',
-      company: 'Modern Broadcast Center',
-      period: 'Jan 2025 - Mar 2025',
+  company: 'Modern Broadcast Center',
+  website: 'https://mbcegypt.com',
+  period: 'Jan 2025 - Mar 2025',
       description:
         'Developed and deployed a full-stack web application with product management and checkout workflows. Focused on responsive design and performance optimization for scalable deployment.',
       technologies: ['Next.js', 'Prisma ORM', 'PostgreSQL', 'Supabase'],
@@ -360,7 +361,7 @@ export default function Portfolio() {
                 <span><span className="block text-xl font-bold text-slate-900 group-hover:text-blue-700 transition-colors">{role.title}</span><span className="block text-slate-600 font-medium mt-1">{role.company}</span></span>
                 <span className="flex items-center gap-4"><span className="text-sm text-slate-500 whitespace-nowrap">{role.period}</span><ChevronDown className={`shrink-0 transition-transform ${isOpen ? 'rotate-180' : ''}`} aria-hidden="true" /></span>
               </button>
-              {isOpen && <div className="mt-5 max-w-3xl pl-0 animate-in fade-in slide-in-from-top-2 duration-300"><p className="text-slate-600 leading-relaxed mb-4">{role.description}</p><div className="flex flex-wrap gap-2">{role.technologies.map((tech) => <span key={tech} className="px-2 py-1 bg-slate-100 text-slate-700 text-xs rounded font-medium">{tech}</span>)}</div></div>}
+              {isOpen && <div className="mt-5 max-w-3xl pl-0 animate-in fade-in slide-in-from-top-2 duration-300"><p className="text-slate-600 leading-relaxed mb-4">{role.description}</p><div className="flex flex-wrap gap-2 mb-4">{role.technologies.map((tech) => <span key={tech} className="px-2 py-1 bg-slate-100 text-slate-700 text-xs rounded font-medium">{tech}</span>)}</div>{role.website && <a href={role.website} target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-blue-700 hover:underline">Visit mbcegypt.com ↗</a>}</div>}
             </div>
           })}
         </div>
