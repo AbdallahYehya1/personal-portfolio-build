@@ -3,12 +3,12 @@ import type { Metadata, Viewport } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Abdallah Yehya | AI Engineer & Full-Stack Developer',
-  description: 'Portfolio of Abdallah Yehya, an AI Engineer and Full-Stack Developer building practical AI systems, agentic workflows, and web applications.',
+  title: 'Abdallah Yehya Portfolio',
+  description: 'Abdallah Yehya Portfolio — Data Scientist and AI Engineer building practical AI systems, agentic workflows, NLP and computer vision applications, and full-stack products.',
   generator: 'v0.app',
   openGraph: {
-    title: 'Abdallah Yehya | AI Engineer & Full-Stack Developer',
-    description: 'AI systems, agentic workflows, and full-stack applications by Abdallah Yehya.',
+    title: 'Abdallah Yehya Portfolio',
+    description: 'Data science, AI systems, NLP, computer vision, LLM workflows, and full-stack applications by Abdallah Yehya.',
     type: 'website',
   },
   icons: {

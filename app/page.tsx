@@ -67,6 +67,45 @@ export default function Portfolio() {
       accent: 'border-purple-200',
     },
     {
+      id: 'arabic-sentiment',
+      title: 'Arabic Sentiment Analysis',
+      subtitle: 'NLP Classification Pipeline',
+      mainIdea: 'An end-to-end NLP system for classifying sentiment in Arabic text.',
+      problem: 'Arabic language data needs specialized preprocessing, including tokenization, lemmatization, stop-word handling, augmentation, and emoji polarity interpretation.',
+      solution: 'I built and evaluated a complete pipeline with RNN, LSTM, and Transformer-based models, comparing how different architectures handled sentiment classification across prepared Arabic datasets.',
+      technologies: ['NLP', 'Arabic Text', 'RNN', 'LSTM', 'Transformers'],
+      github: '',
+      deployed: '',
+      color: 'from-cyan-50 to-sky-50',
+      accent: 'border-cyan-200',
+    },
+    {
+      id: 'newsgroup',
+      title: 'News Group Classification',
+      subtitle: 'Classical NLP Text Classification',
+      mainIdea: 'A text classification pipeline that assigns news content to its relevant group.',
+      problem: 'Raw text is noisy and difficult for classical machine-learning models to use directly, so meaningful features and consistent evaluation are required.',
+      solution: 'I applied NLTK preprocessing and data augmentation, extracted TF-IDF features, trained Logistic Regression, SVM, and KNN models, and evaluated them with Accuracy, Precision, Recall, and F1-score.',
+      technologies: ['NLTK', 'Scikit-learn', 'TF-IDF', 'SVM'],
+      github: '',
+      deployed: '',
+      color: 'from-slate-50 to-zinc-50',
+      accent: 'border-slate-200',
+    },
+    {
+      id: 'movies',
+      title: 'Movies Popularity Prediction',
+      subtitle: 'Machine Learning Regression',
+      mainIdea: 'A regression system for predicting movie popularity from structured data.',
+      problem: 'Popularity depends on multiple features with different scales and relationships, so the pipeline needs careful preprocessing, feature engineering, and model comparison.',
+      solution: 'I developed a Scikit-learn regression workflow and compared Linear Regression, Ridge Regression, and Random Forest models to understand which approach best captured the available patterns.',
+      technologies: ['Scikit-learn', 'Regression', 'Feature Engineering', 'Random Forest'],
+      github: '',
+      deployed: '',
+      color: 'from-fuchsia-50 to-pink-50',
+      accent: 'border-fuchsia-200',
+    },
+    {
       id: 'smartschool',
       title: 'Smart School',
       subtitle: 'End-to-End Student Monitoring System (Grade: A)',
@@ -236,10 +275,10 @@ export default function Portfolio() {
       <section className="max-w-5xl mx-auto px-6 py-16 md:py-24 grid md:grid-cols-2 gap-12 items-center animate-in fade-in duration-700">
         <div>
           <h2 className="text-5xl md:text-6xl font-bold tracking-tight mb-6">
-            AI Engineer & Full-Stack Developer
+            Data Scientist & AI Engineer
           </h2>
           <p className="text-lg text-slate-600 mb-8 leading-relaxed">
-            I build end-to-end AI systems, agentic workflows, and full-stack applications that solve real problems. Specialized in LLMs, RAG, NL2SQL, and production-ready Python backends.
+            I build practical AI systems across machine learning, deep learning, NLP, computer vision, and LLM applications—from RAG and agentic workflows to NL2SQL and production-ready web products.
           </p>
           <p className="text-sm text-slate-500 mb-8">
             <span className="font-semibold">Location:</span> Agouza, Giza, Egypt
