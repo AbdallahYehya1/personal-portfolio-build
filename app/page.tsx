@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
-import { Menu, X, ChevronDown, Send } from 'lucide-react'
+import { Menu, X, ChevronDown, Send, Eye, Download } from 'lucide-react'
 
 export default function Portfolio() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -178,12 +178,22 @@ export default function Portfolio() {
         setSubmitStatus('success')
         setFormMessage('')
         e.currentTarget.reset()
-      } else {
-        setSubmitStatus('error')
-      }
-    } catch {
-      setSubmitStatus('error')
-    } finally {
+  } else {
+  const subject = encodeURIComponent(`Portfolio message from ${name}`)
+  const body = encodeURIComponent(`${message}\n\nReply to: ${email}`)
+  window.location.href = `mailto:abdallah.yehya02@gmail.com?subject=${subject}&body=${body}`
+  setSubmitStatus('success')
+  setFormMessage('')
+  e.currentTarget.reset()
+  }
+  } catch {
+  const subject = encodeURIComponent(`Portfolio message from ${name}`)
+  const body = encodeURIComponent(`${message}\n\nReply to: ${email}`)
+  window.location.href = `mailto:abdallah.yehya02@gmail.com?subject=${subject}&body=${body}`
+  setSubmitStatus('success')
+  setFormMessage('')
+  e.currentTarget.reset()
+  } finally {
       setIsSubmitting(false)
     }
   }
@@ -259,13 +269,10 @@ export default function Portfolio() {
               >
                 Contact
               </a>
-              <a
-                href="/abdallah-yehya-cv.pdf"
-                download
-                className="block px-4 py-2 bg-slate-900 text-white rounded-lg hover:bg-slate-800 transition-colors text-sm font-medium text-center"
-              >
-                Download CV
-              </a>
+              <div className="grid grid-cols-2 gap-2">
+                <a href="/abdallah-yehya-cv.pdf" target="_blank" rel="noopener noreferrer" className="px-3 py-2 border border-slate-300 text-slate-900 rounded-lg hover:bg-slate-50 transition-colors text-sm font-medium text-center">View CV</a>
+                <a href="/abdallah-yehya-cv.pdf" download className="px-3 py-2 bg-slate-900 text-white rounded-lg hover:bg-slate-800 transition-colors text-sm font-medium text-center">Download</a>
+              </div>
             </div>
           </div>
         )}
@@ -278,7 +285,7 @@ export default function Portfolio() {
             Data Scientist & AI Engineer
           </h2>
           <p className="text-lg text-slate-600 mb-8 leading-relaxed">
-            I build practical AI systems across machine learning, deep learning, NLP, computer vision, and LLM applications—from RAG and agentic workflows to NL2SQL and production-ready web products.
+            I am an entry-level data scientist and AI engineer building practical projects across machine learning, deep learning, NLP, computer vision, and LLM applications. I enjoy learning by turning real problems into clear, working solutions.
           </p>
           <p className="text-sm text-slate-500 mb-8">
             <span className="font-semibold">Location:</span> Agouza, Giza, Egypt
@@ -297,14 +304,14 @@ export default function Portfolio() {
               View Selected Work
             </a>
           </div>
-          <a
-            href="/abdallah-yehya-cv.pdf"
-            download
-            className="inline-flex items-center gap-2 text-slate-600 hover:text-slate-900 transition-colors font-medium"
-          >
-            Download CV
-            <ChevronDown size={16} />
-          </a>
+          <div className="flex flex-col sm:flex-row gap-3">
+            <a href="/abdallah-yehya-cv.pdf" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 px-4 py-2.5 border border-slate-300 text-slate-900 rounded-lg hover:bg-slate-50 transition-colors font-medium">
+              <Eye size={16} aria-hidden="true" /> View CV
+            </a>
+            <a href="/abdallah-yehya-cv.pdf" download className="inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-slate-900 text-white rounded-lg hover:bg-slate-800 transition-colors font-medium">
+              <Download size={16} aria-hidden="true" /> Download CV
+            </a>
+          </div>
         </div>
         <div className="relative aspect-square rounded-2xl overflow-hidden border border-slate-200">
           <Image
@@ -333,7 +340,7 @@ export default function Portfolio() {
             <div>
               <h4 className="font-semibold text-slate-900 mb-2">Core Strengths</h4>
               <p className="text-slate-600">
-                End-to-end AI system design, LLMs & agentic workflows, full-stack web development, backend architecture, database reasoning, and production deployment.
+                Practical machine learning, LLM and agentic workflows, full-stack web development, backend foundations, database reasoning, and collaborative problem solving.
               </p>
             </div>
             <div>
@@ -518,12 +525,12 @@ export default function Portfolio() {
 
             {submitStatus === 'success' && (
               <p className="text-green-600 font-medium">
-                Message sent! I&apos;ll get back to you soon.
+                Your email app should open with the message ready to send. If it doesn&apos;t, email me directly.
               </p>
             )}
             {submitStatus === 'error' && (
               <p className="text-red-600 font-medium">
-                Failed to send. Please try emailing directly.
+                Could not open your email app. Please email me directly at abdallah.yehya02@gmail.com.
               </p>
             )}
 
