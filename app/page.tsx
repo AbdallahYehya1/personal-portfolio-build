@@ -178,12 +178,22 @@ export default function Portfolio() {
         setSubmitStatus('success')
         setFormMessage('')
         e.currentTarget.reset()
-      } else {
-        setSubmitStatus('error')
-      }
-    } catch {
-      setSubmitStatus('error')
-    } finally {
+  } else {
+  const subject = encodeURIComponent(`Portfolio message from ${name}`)
+  const body = encodeURIComponent(`${message}\n\nReply to: ${email}`)
+  window.location.href = `mailto:abdallah.yehya02@gmail.com?subject=${subject}&body=${body}`
+  setSubmitStatus('success')
+  setFormMessage('')
+  e.currentTarget.reset()
+  }
+  } catch {
+  const subject = encodeURIComponent(`Portfolio message from ${name}`)
+  const body = encodeURIComponent(`${message}\n\nReply to: ${email}`)
+  window.location.href = `mailto:abdallah.yehya02@gmail.com?subject=${subject}&body=${body}`
+  setSubmitStatus('success')
+  setFormMessage('')
+  e.currentTarget.reset()
+  } finally {
       setIsSubmitting(false)
     }
   }
@@ -515,12 +525,12 @@ export default function Portfolio() {
 
             {submitStatus === 'success' && (
               <p className="text-green-600 font-medium">
-                Message sent! I&apos;ll get back to you soon.
+                Your email app should open with the message ready to send. If it doesn&apos;t, email me directly.
               </p>
             )}
             {submitStatus === 'error' && (
               <p className="text-red-600 font-medium">
-                Failed to send. Please try emailing directly.
+                Could not open your email app. Please email me directly at abdallah.yehya02@gmail.com.
               </p>
             )}
 
