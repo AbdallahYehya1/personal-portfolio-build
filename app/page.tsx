@@ -203,7 +203,7 @@ export default function Portfolio() {
       {/* Navigation */}
       <nav className="sticky top-0 z-40 bg-white border-b border-slate-200">
         <div className="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold tracking-tight">Abdallah Yehya</h1>
+          <h1 className="text-2xl font-bold tracking-tight">Abdallah Yehya Soliman</h1>
 
           {/* Mobile Menu Button */}
           <button
@@ -282,7 +282,7 @@ export default function Portfolio() {
       <section className="max-w-5xl mx-auto px-6 py-16 md:py-24 grid md:grid-cols-2 gap-12 items-center animate-in fade-in duration-700">
         <div>
           <h2 className="text-5xl md:text-6xl font-bold tracking-tight mb-6">
-            Data Scientist & AI Engineer
+            AI Engineer & Data Scientist  
           </h2>
           <p className="text-lg text-slate-600 mb-8 leading-relaxed">
             I am an entry-level data scientist and AI engineer building practical projects across machine learning, deep learning, NLP, computer vision, and LLM applications. I enjoy learning by turning real problems into clear, working solutions.
