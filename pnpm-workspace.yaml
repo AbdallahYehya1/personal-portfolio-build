@@ -3,3 +3,8 @@ pmOnFail: ignore
 minimumReleaseAgeExclude:
   - '@next/*'
   - next
+
+# Keep transitive browser-targeting tools on patched compatible releases.
+overrides:
+  browserslist: ^4.28.7
+  baseline-browser-mapping: ^2.11.0

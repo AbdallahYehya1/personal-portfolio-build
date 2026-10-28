@@ -1,6 +1,5 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
-@import 'shadcn/tailwind.css';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -53,4 +52,85 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 
 @media (max-width: 640px) {
   h2 { overflow-wrap: anywhere; }
+}
+
+/* Portfolio visual system */
+:root { --background: #f6f7f2; --foreground: #182c27; --border: #dce2d9; --ring: #216b51; }
+body { font-family: 'Segoe UI', Arial, sans-serif; }
+.portfolio { background: var(--background); }
+.max-w-5xl { max-width: 1160px; }
+section { scroll-margin-top: 105px; }
+.site-nav { background: #f6f7f2ed; backdrop-filter: blur(16px); border-bottom: 1px solid var(--border); }
+.site-nav > div:first-child { min-height: 88px; }
+.wordmark { display: flex; align-items: center; gap: 12px; font-weight: 650; font-size: 14px; }
+.monogram { width: 44px; height: 44px; display: grid; place-items: center; background: #193e32; color: #e8f2bd; border-radius: 50%; font-size: 23px; letter-spacing: -2px; padding-right: 3px; }
+.wordmark-caption { display: block; font-size: 8px; letter-spacing: .16em; margin-top: 4px; color: #63746a; }
+.hero { display: grid; grid-template-columns: 1.3fr 1fr; gap: 70px; padding-top: 88px; padding-bottom: 88px; align-items: center; }
+.eyebrow,.section-index { font-size: 11px; font-weight: 650; letter-spacing: .18em; color: #416452; }
+.eyebrow { display: flex; align-items: center; gap: 9px; margin-bottom: 26px; }
+.status-dot { width: 7px; height: 7px; border-radius: 50%; background: #438762; box-shadow: 0 0 0 4px #43876214; }
+.hero h1 { font-size: clamp(42px,5.1vw,69px); line-height: 1.05; letter-spacing: -.065em; font-weight: 620; }
+.hero h1 > span { color: #347659; font-family: Georgia, serif; font-weight: 400; font-style: italic; letter-spacing: -.055em; }
+.hero-role { margin-top: 24px; font-size: 17px; font-weight: 600; }
+.hero-description { margin-top: 12px; color: #647269; font-size: 15px; line-height: 1.8; max-width: 500px; }
+.location { display: flex; gap: 7px; align-items: center; color: #65766c; margin-top: 18px; font-size: 12px; }
+.hero-actions { display: flex; gap: 12px; margin-top: 28px; flex-wrap: wrap; }
+.primary-link,.secondary-link { display: inline-flex; gap: 22px; align-items: center; padding: 14px 20px; border-radius: 7px; font-size: 13px; font-weight: 600; transition: background .2s, transform .2s; }
+.primary-link { background: #234e3b; color: white; }
+.primary-link:hover { background: #163b2a; transform: translateY(-2px); }
+.secondary-link { border: 1px solid #cdd7ca; }
+.secondary-link:hover { background: #e9eee3; }
+.cv-links { display: flex; gap: 20px; margin-top: 23px; flex-wrap: wrap; }
+.cv-links a { display: flex; align-items: center; gap: 6px; font-size: 11px; color: #637167; }
+.cv-links a:hover { color: #246044; }
+.portrait-wrap { position: relative; padding-bottom: 22px; }
+.portrait-label { display: flex; justify-content: space-between; font-size: 8px; letter-spacing: .12em; margin-bottom: 12px; color: #65766c; }
+.portrait { position: relative; aspect-ratio: 4/4.7; border-radius: 100px 10px 10px 10px; overflow: hidden; background: #dce2d5; }
+.portrait img { object-position: center 35%; }
+.portrait-note { position: absolute; bottom: 0; left: -25px; right: 20px; background: #e6edce; border: 1px solid #d4ddbe; border-radius: 8px; padding: 20px; display: flex; align-items: center; gap: 15px; font-size: 13px; font-weight: 600; box-shadow: 0 8px 25px #183a2510; }
+.portrait-note small { display: block; font-size: 10px; margin-top: 5px; font-weight: 400; color: #617355; }
+.skill-strip { border-block: 1px solid var(--border); background: #ecefe5; }
+.skill-strip > div { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px; padding-block: 24px; font-size: 12px; color: #435b4d; }
+.skill-strip span:first-child { font-size: 9px; letter-spacing: .12em; align-self: center; color: #71816b; }
+.section-index { display: block; margin-bottom: 16px; }
+h3 { color: #1c382b; }
+section h3 { letter-spacing: -.045em; }
+.text-slate-600,.text-slate-700 { color: #637269; }
+.text-slate-900 { color: #1c3328; }
+.text-blue-700 { color: #327051; }
+.bg-slate-900 { background-color: #244e3a; }
+.bg-slate-100 { background-color: #eaf0e4; }
+.border-slate-200 { border-color: var(--border); }
+.project-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 18px; align-items: start; }
+.project-card { background: #fcfdf9; border: 1px solid #dce3d7; border-radius: 12px; padding: 27px; transition: border-color .2s, box-shadow .2s; }
+.project-card:hover { border-color: #9eaf94; box-shadow: 0 5px 20px #234b3210; }
+.project-card.is-open { border-color: #7a9979; background: #f0f4e8; }
+.project-toggle > span { gap: 14px; }
+.project-toggle .text-2xl { font-size: 22px; letter-spacing: -.025em; }
+.project-toggle .text-slate-400 { font-family: monospace; color: #6e8a68; font-size: 11px; }
+.project-toggle .text-slate-600 { font-size: 12px; }
+.project-summary { font-size: 13px; line-height: 1.8; color: #647467; margin-top: 20px; }
+.project-tags { display: flex; gap: 7px; flex-wrap: wrap; margin-top: 20px; }
+.project-tags span { font-size: 10px; border: 1px solid #d6dfcd; padding: 4px 9px; border-radius: 4px; color: #5c7355; }
+.project-details { border-top: 1px solid #d6dfcd; padding-top: 24px; }
+.project-details p { font-size: 13px; }
+#experience button,#experience button > span:last-child { flex-wrap: wrap; }
+#experience button > span:last-child { justify-content: space-between; }
+#contact { background: #eaf0e3; border: 1px solid #d8e1d1; border-radius: 16px; margin-top: 30px; padding-inline: 40px; }
+.contact-form { background: #fbfcf8; border: 1px solid #dce4d6; border-radius: 12px; padding: 26px; }
+.contact-form input,.contact-form textarea { background: #f7f9f3; border-color: #d3dccd; font-size: 14px; padding-block: 12px; }
+.skip-link { position: fixed; left: 12px; top: -100px; padding: 10px 20px; z-index: 100; background: #fff; }
+.skip-link:focus { top: 12px; }
+@media (max-width: 768px) {
+.hero { grid-template-columns: 1fr; gap: 42px; padding-top: 48px; padding-bottom: 50px; }
+.hero h1 { font-size: clamp(42px,9vw,64px); }
+.portrait-wrap { max-width: 420px; width: 100%; margin: auto; }
+.portrait-note { left: 12px; right: 12px; }
+.project-grid { grid-template-columns: 1fr; }
+.skill-strip > div { justify-content: flex-start; gap: 16px 24px; }
+#contact { margin-inline: 12px; padding: 35px 20px; }
+.contact-form { padding: 20px; }
+section { scroll-margin-top: 90px; }
+.site-nav > div:first-child { min-height: 76px; }
+.wordmark { font-size: 12px; }
 }

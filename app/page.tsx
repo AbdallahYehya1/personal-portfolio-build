@@ -2,14 +2,14 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
-import { Menu, X, ChevronDown, Send, Eye, Download } from 'lucide-react'
+import { Menu, X, ChevronDown, Send, Eye, Download, ArrowUpRight, MapPin, Code2, Sparkles } from 'lucide-react'
 
 export default function Portfolio() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
   const [formMessage, setFormMessage] = useState('')
-  const [openProject, setOpenProject] = useState<string | null>(null)
+  const [openProject, setOpenProject] = useState<string | null>('jobhunt')
   const [openExperience, setOpenExperience] = useState<number | null>(null)
   const [isEducationOpen, setIsEducationOpen] = useState(false)
 
@@ -159,57 +159,39 @@ export default function Portfolio() {
     const message = formData.get('message') as string
     const honeypot = formData.get('website') as string
 
-    // Honeypot check
-    if (honeypot) {
-      setIsSubmitting(false)
-      setSubmitStatus('success')
-      e.currentTarget.reset()
-      return
-    }
-
+    const form = e.currentTarget
     try {
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, message }),
+        body: JSON.stringify({ name, email, message, website: honeypot }),
+        signal: AbortSignal.timeout(15000),
       })
-
-      if (response.ok) {
-        setSubmitStatus('success')
-        setFormMessage('')
-        e.currentTarget.reset()
-  } else {
-  const subject = encodeURIComponent(`Portfolio message from ${name}`)
-  const body = encodeURIComponent(`${message}\n\nReply to: ${email}`)
-  window.location.href = `mailto:abdallah.yehya02@gmail.com?subject=${subject}&body=${body}`
-  setSubmitStatus('success')
-  setFormMessage('')
-  e.currentTarget.reset()
-  }
-  } catch {
-  const subject = encodeURIComponent(`Portfolio message from ${name}`)
-  const body = encodeURIComponent(`${message}\n\nReply to: ${email}`)
-  window.location.href = `mailto:abdallah.yehya02@gmail.com?subject=${subject}&body=${body}`
-  setSubmitStatus('success')
-  setFormMessage('')
-  e.currentTarget.reset()
-  } finally {
+      const result = await response.json()
+      if (!response.ok || result.success !== true) throw new Error('Delivery failed')
+      setSubmitStatus('success')
+      setFormMessage('')
+      form.reset()
+    } catch {
+      setSubmitStatus('error')
+    } finally {
       setIsSubmitting(false)
     }
   }
 
   return (
-    <div className="min-h-screen bg-white text-slate-900">
+    <div className="portfolio min-h-screen text-slate-900">
+      <a href="#main" className="skip-link">Skip to content</a>
       {/* Navigation */}
-      <nav className="sticky top-0 z-40 bg-white border-b border-slate-200">
+      <nav className="site-nav sticky top-0 z-40">
         <div className="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
-          <h1 className="text-2xl font-bold tracking-tight">Abdallah Yehya Soliman</h1>
+          <a href="#main" className="wordmark"><span className="monogram">ay.</span><span>Abdallah Yehya Soliman<span className="wordmark-caption">AI ENGINEER & DATA SCIENTIST</span></span></a>
 
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="md:hidden p-2 hover:bg-slate-100 rounded-lg transition-colors"
-            aria-label="Toggle menu"
+            aria-label="Toggle menu" aria-expanded={isMenuOpen} aria-controls="mobile-menu"
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -246,7 +228,7 @@ export default function Portfolio() {
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="md:hidden border-t border-slate-200 bg-slate-50">
+          <div id="mobile-menu" className="md:hidden border-t border-slate-200 bg-slate-50">
             <div className="px-6 py-4 space-y-4">
               <a
                 href="#work"
@@ -278,55 +260,37 @@ export default function Portfolio() {
         )}
       </nav>
 
-      {/* Hero Section */}
-      <section className="max-w-5xl mx-auto px-6 py-16 md:py-24 grid md:grid-cols-2 gap-12 items-center animate-in fade-in duration-700">
-        <div>
-          <h2 className="text-5xl md:text-6xl font-bold tracking-tight mb-6">
-            AI Engineer & Data Scientist  
-          </h2>
-          <p className="text-lg text-slate-600 mb-8 leading-relaxed">
-            I am an entry-level data scientist and AI engineer building practical projects across machine learning, deep learning, NLP, computer vision, and LLM applications. I enjoy learning by turning real problems into clear, working solutions.
-          </p>
-          <p className="text-sm text-slate-500 mb-8">
-            <span className="font-semibold">Location:</span> Agouza, Giza, Egypt
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 mb-12">
-            <a
-              href="#contact"
-              className="px-6 py-3 bg-slate-900 text-white rounded-lg hover:bg-slate-800 transition-colors font-medium text-center"
-            >
-              Let&apos;s Talk
-            </a>
-            <a
-              href="#work"
-              className="px-6 py-3 border border-slate-300 text-slate-900 rounded-lg hover:bg-slate-50 transition-colors font-medium text-center"
-            >
-              View Selected Work
-            </a>
+      <main id="main">
+      <section className="hero max-w-5xl mx-auto px-6">
+        <div className="hero-copy">
+          <p className="eyebrow"><span className="status-dot" /> OPEN TO OPPORTUNITIES</p>
+          <h1>Turning complex<br />problems into<br /><span>practical AI.</span></h1>
+          <p className="hero-role">AI Engineer & Data Scientist</p>
+          <p className="hero-description">I am an entry-level data scientist and AI engineer building practical projects across machine learning, deep learning, NLP, computer vision, and LLM applications. I enjoy learning by turning real problems into clear, working solutions.</p>
+          <p className="location"><MapPin size={15} aria-hidden="true" /> Agouza, Giza, Egypt</p>
+          <div className="hero-actions">
+            <a href="#work" className="primary-link">Explore my work <ArrowUpRight size={18} aria-hidden="true" /></a>
+            <a href="#contact" className="secondary-link">Let&apos;s Talk <ArrowUpRight size={18} aria-hidden="true" /></a>
           </div>
-          <div className="flex flex-col sm:flex-row gap-3">
-            <a href="/abdallah-yehya-cv.pdf" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 px-4 py-2.5 border border-slate-300 text-slate-900 rounded-lg hover:bg-slate-50 transition-colors font-medium">
-              <Eye size={16} aria-hidden="true" /> View CV
-            </a>
-            <a href="/abdallah-yehya-cv.pdf" download className="inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-slate-900 text-white rounded-lg hover:bg-slate-800 transition-colors font-medium">
-              <Download size={16} aria-hidden="true" /> Download CV
-            </a>
+          <div className="cv-links">
+            <a href="/abdallah-yehya-cv.pdf" target="_blank" rel="noopener noreferrer"><Eye size={15} aria-hidden="true" /> View CV</a>
+            <a href="/abdallah-yehya-cv.pdf" download><Download size={15} aria-hidden="true" /> Download CV</a>
+            <a href="https://github.com/AbdallahYehya1" target="_blank" rel="noopener noreferrer"><Code2 size={15} aria-hidden="true" /> GitHub</a>
           </div>
         </div>
-        <div className="relative aspect-square rounded-2xl overflow-hidden border border-slate-200">
-          <Image
-            src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG-20240703-WA0087-EpSPKE8v1917MgoT8U0sMizZHVjnuH.jpg"
-            alt="Abdallah Yehya - AI Engineer"
-            fill
-            className="object-cover"
-            priority
-          />
+        <div className="portrait-wrap">
+          <div className="portrait-label"><span>BASED IN EGYPT</span><span>AI / DATA / ENGINEERING</span></div>
+          <div className="portrait">
+            <Image src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG-20240703-WA0087-EpSPKE8v1917MgoT8U0sMizZHVjnuH.jpg" alt="Abdallah Yehya - AI Engineer" fill className="object-cover" priority sizes="(max-width: 768px) 90vw, 420px" />
+          </div>
+          <div className="portrait-note"><Sparkles size={20} aria-hidden="true" /><span>From an idea to a working system.<small>Machine learning · Engineering · Product</small></span></div>
         </div>
       </section>
+      <div className="skill-strip"><div className="max-w-5xl mx-auto px-6"><span>BUILT WITH CURIOSITY</span><span>Machine Learning</span><span>LLM Applications</span><span>Computer Vision</span><span>Full-stack Engineering</span></div></div>
 
       {/* About Section */}
       <section className="max-w-5xl mx-auto px-6 py-16 border-t border-slate-200">
-        <h3 className="text-3xl font-bold tracking-tight mb-8">About</h3>
+        <h3 className="text-3xl font-bold tracking-tight mb-8"><span className="section-index">01 / ABOUT</span>A little about me.</h3>
         <div className="grid md:grid-cols-2 gap-12">
           <div>
             <p className="text-lg text-slate-600 leading-relaxed mb-6">
@@ -356,16 +320,16 @@ export default function Portfolio() {
       {/* Selected Work Section */}
       <section id="work" className="max-w-5xl mx-auto px-6 py-20 border-t border-slate-200">
         <div className="max-w-2xl mb-12">
-          <p className="text-sm font-semibold tracking-[0.2em] text-blue-700 mb-4">SELECTED WORK</p>
+          <p className="text-sm font-semibold tracking-[0.2em] text-blue-700 mb-4">02 / SELECTED WORK</p>
           <h3 className="text-4xl md:text-5xl font-bold tracking-tight mb-5">I build systems that make difficult work feel simple.</h3>
           <p className="text-lg text-slate-600 leading-relaxed">These projects are not just demos. Each one started with a messy, real-world problem and became an exercise in making AI reliable, useful, and safe enough to ship.</p>
         </div>
-        <div className="divide-y divide-slate-200 border-y border-slate-200">
+        <div className="project-grid">
           {projects.map((project, index) => {
             const isOpen = openProject === project.id
             return (
-              <article key={project.id} className="py-6">
-                <button type="button" onClick={() => setOpenProject(isOpen ? null : project.id)} aria-expanded={isOpen} className="w-full text-left flex items-center justify-between gap-5 group">
+              <article key={project.id} className={`project-card ${isOpen ? 'is-open' : ''}`}>
+                <button type="button" onClick={() => setOpenProject(isOpen ? null : project.id)} aria-expanded={isOpen} aria-controls={`project-${project.id}`} className="project-toggle w-full text-left flex items-center justify-between gap-5 group">
                   <span className="flex items-start gap-5">
                     <span className="text-sm font-bold text-slate-400 pt-1">0{index + 1}</span>
                     <span>
@@ -375,9 +339,11 @@ export default function Portfolio() {
                   </span>
                   <ChevronDown className={`shrink-0 transition-transform ${isOpen ? 'rotate-180' : ''}`} aria-hidden="true" />
                 </button>
+                <p className="project-summary">{project.mainIdea}</p>
+                <div className="project-tags">{project.technologies.map(tech => <span key={tech}>{tech}</span>)}</div>
                 {isOpen && (
-                  <div className="mt-7 ml-9 md:ml-12 max-w-4xl animate-in fade-in slide-in-from-top-2 duration-300">
-                    <div className="grid gap-6 md:grid-cols-3 mb-7">
+                  <div id={`project-${project.id}`} className="project-details mt-7 animate-in fade-in slide-in-from-top-2 duration-300">
+                    <div className="grid gap-6 mb-7">
                       <div><h5 className="text-xs font-bold tracking-[0.18em] text-blue-700 mb-2">MAIN IDEA</h5><p className="text-slate-700 leading-relaxed">{project.mainIdea}</p></div>
                       <div><h5 className="text-xs font-bold tracking-[0.18em] text-blue-700 mb-2">THE PROBLEM</h5><p className="text-slate-700 leading-relaxed">{project.problem}</p></div>
                       <div><h5 className="text-xs font-bold tracking-[0.18em] text-blue-700 mb-2">THE SOLUTION</h5><p className="text-slate-700 leading-relaxed">{project.solution}</p></div>
@@ -398,7 +364,7 @@ export default function Portfolio() {
 
       {/* Experience Section */}
       <section id="experience" className="max-w-5xl mx-auto px-6 py-16 border-t border-slate-200">
-        <h3 className="text-3xl font-bold tracking-tight mb-12">Experience</h3>
+        <h3 className="text-3xl font-bold tracking-tight mb-12"><span className="section-index">03 / EXPERIENCE</span>Where I’ve contributed.</h3>
         <div className="divide-y divide-slate-200 border-y border-slate-200">
           {experience.map((role, index) => {
             const isOpen = openExperience === index
@@ -415,7 +381,7 @@ export default function Portfolio() {
 
       {/* Education Section */}
       <section className="max-w-5xl mx-auto px-6 py-16 border-t border-slate-200">
-        <h3 className="text-3xl font-bold tracking-tight mb-8">Education</h3>
+        <h3 className="text-3xl font-bold tracking-tight mb-8"><span className="section-index">04 / EDUCATION</span>The foundations.</h3>
         <div className="border-y border-slate-200">
           <button type="button" onClick={() => setIsEducationOpen(!isEducationOpen)} aria-expanded={isEducationOpen} className="w-full text-left py-6 flex items-center justify-between gap-4 group">
             <span><span className="block text-xl font-bold text-slate-900 group-hover:text-blue-700 transition-colors">Bachelor&apos;s Degree in Computer Science</span><span className="block text-slate-600 font-medium mt-1">Ain-Shams University, Cairo — 2020–2024</span></span>
@@ -427,7 +393,7 @@ export default function Portfolio() {
 
       {/* Contact Section */}
       <section id="contact" className="max-w-5xl mx-auto px-6 py-16 border-t border-slate-200">
-        <h3 className="text-3xl font-bold tracking-tight mb-4">Let&apos;s Connect</h3>
+        <h3 className="text-3xl font-bold tracking-tight mb-4"><span className="section-index">05 / CONTACT</span>Let&apos;s build something useful.</h3>
         <p className="text-lg text-slate-600 mb-12">
           Interested in discussing an opportunity? Send me a message or reach out directly.
         </p>
@@ -468,13 +434,14 @@ export default function Portfolio() {
             </div>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="contact-form space-y-4" aria-busy={isSubmitting}>
             <div>
               <label htmlFor="name" className="block text-sm font-medium text-slate-900 mb-2">
                 Name
               </label>
               <input
                 id="name"
+                autoComplete="name"
                 name="name"
                 type="text"
                 required
@@ -489,6 +456,7 @@ export default function Portfolio() {
               </label>
               <input
                 id="email"
+                autoComplete="email"
                 name="email"
                 type="email"
                 required
@@ -524,13 +492,13 @@ export default function Portfolio() {
             />
 
             {submitStatus === 'success' && (
-              <p className="text-green-600 font-medium">
-                Your email app should open with the message ready to send. If it doesn&apos;t, email me directly.
+              <p role="status" className="text-green-600 font-medium">
+                Thanks! Your message was sent successfully. I’ll get back to you soon.
               </p>
             )}
             {submitStatus === 'error' && (
-              <p className="text-red-600 font-medium">
-                Could not open your email app. Please email me directly at abdallah.yehya02@gmail.com.
+              <p role="alert" className="text-red-600 font-medium">
+                Your message could not be sent. Please try again or email me at abdallah.yehya02@gmail.com. Your message is still here.
               </p>
             )}
 
@@ -546,6 +514,7 @@ export default function Portfolio() {
         </div>
       </section>
 
+      </main>
       {/* Footer */}
       <footer className="max-w-5xl mx-auto px-6 py-12 border-t border-slate-200 mt-16">
         <div className="flex flex-col sm:flex-row justify-between items-center gap-6">
