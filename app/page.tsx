@@ -90,32 +90,6 @@ export default function Portfolio() {
       color: 'from-cyan-50 to-sky-50',
       accent: 'border-cyan-200',
     },
-    {
-      id: 'newsgroup',
-      title: 'News Group Classification',
-      subtitle: 'Classical NLP Text Classification',
-      mainIdea: 'A text classification pipeline that assigns news content to its relevant group.',
-      problem: 'Raw text is noisy and difficult for classical machine-learning models to use directly, so meaningful features and consistent evaluation are required.',
-      solution: 'I applied NLTK preprocessing and data augmentation, extracted TF-IDF features, trained Logistic Regression, SVM, and KNN models, and evaluated them with Accuracy, Precision, Recall, and F1-score.',
-      technologies: ['NLTK', 'Scikit-learn', 'TF-IDF', 'SVM'],
-      github: '',
-      deployed: '',
-      color: 'from-slate-50 to-zinc-50',
-      accent: 'border-slate-200',
-    },
-    {
-      id: 'movies',
-      title: 'Movies Popularity Prediction',
-      subtitle: 'Machine Learning Regression',
-      mainIdea: 'A regression system for predicting movie popularity from structured data.',
-      problem: 'Popularity depends on multiple features with different scales and relationships, so the pipeline needs careful preprocessing, feature engineering, and model comparison.',
-      solution: 'I developed a Scikit-learn regression workflow and compared Linear Regression, Ridge Regression, and Random Forest models to understand which approach best captured the available patterns.',
-      technologies: ['Scikit-learn', 'Regression', 'Feature Engineering', 'Random Forest'],
-      github: '',
-      deployed: '',
-      color: 'from-fuchsia-50 to-pink-50',
-      accent: 'border-fuchsia-200',
-    },
   ]
 
   const experience = [
