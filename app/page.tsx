@@ -2,16 +2,14 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
-import { Menu, X, ChevronDown, Send, Eye, Download, ArrowUpRight, MapPin, Code2, Sparkles } from 'lucide-react'
+import { Menu, X, Send, Eye, Download, ArrowUpRight, MapPin, Code2, ArrowRight, Plus, Minus, GraduationCap } from 'lucide-react'
 
 export default function Portfolio() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
   const [formMessage, setFormMessage] = useState('')
-  const [openProject, setOpenProject] = useState<string | null>('jobhunt')
-  const [openExperience, setOpenExperience] = useState<number | null>(null)
-  const [isEducationOpen, setIsEducationOpen] = useState(false)
+  const [openProject, setOpenProject] = useState<string | null>(null)
 
   const projects = [
     {
@@ -185,7 +183,7 @@ export default function Portfolio() {
       {/* Navigation */}
       <nav className="site-nav sticky top-0 z-40">
         <div className="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
-          <a href="#main" className="wordmark"><span className="monogram">ay.</span><span>Abdallah Yehya Soliman<span className="wordmark-caption">AI ENGINEER & DATA SCIENTIST</span></span></a>
+          <a href="#main" className="wordmark"><span className="monogram">AY<span>.</span></span><span>Abdallah Yehya Soliman<span className="wordmark-caption">AI ENGINEER & DATA SCIENTIST</span></span></a>
 
           {/* Mobile Menu Button */}
           <button
@@ -264,13 +262,14 @@ export default function Portfolio() {
       <section className="hero max-w-5xl mx-auto px-6">
         <div className="hero-copy">
           <p className="eyebrow"><span className="status-dot" /> OPEN TO OPPORTUNITIES</p>
-          <h1>Turning complex<br />problems into<br /><span>practical AI.</span></h1>
-          <p className="hero-role">AI Engineer & Data Scientist</p>
+          <p className="hero-intro">Hi, I’m Abdallah.</p>
+          <h1>AI engineer.<br />Data scientist.<br /><span>Problem solver.</span></h1>
+
           <p className="hero-description">I am an entry-level data scientist and AI engineer building practical projects across machine learning, deep learning, NLP, computer vision, and LLM applications. I enjoy learning by turning real problems into clear, working solutions.</p>
           <p className="location"><MapPin size={15} aria-hidden="true" /> Agouza, Giza, Egypt</p>
           <div className="hero-actions">
-            <a href="#work" className="primary-link">Explore my work <ArrowUpRight size={18} aria-hidden="true" /></a>
-            <a href="#contact" className="secondary-link">Let&apos;s Talk <ArrowUpRight size={18} aria-hidden="true" /></a>
+            <a href="#work" className="primary-link">View my work <ArrowRight size={18} aria-hidden="true" /></a>
+            <a href="#contact" className="secondary-link">Get in touch <ArrowUpRight size={18} aria-hidden="true" /></a>
           </div>
           <div className="cv-links">
             <a href="/abdallah-yehya-cv.pdf" target="_blank" rel="noopener noreferrer"><Eye size={15} aria-hidden="true" /> View CV</a>
@@ -279,18 +278,57 @@ export default function Portfolio() {
           </div>
         </div>
         <div className="portrait-wrap">
-          <div className="portrait-label"><span>BASED IN EGYPT</span><span>AI / DATA / ENGINEERING</span></div>
+          <div className="portrait-backdrop" aria-hidden="true" />
           <div className="portrait">
-            <Image src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG-20240703-WA0087-EpSPKE8v1917MgoT8U0sMizZHVjnuH.jpg" alt="Abdallah Yehya - AI Engineer" fill className="object-cover" priority sizes="(max-width: 768px) 90vw, 420px" />
+            <Image src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG-20240703-WA0087-EpSPKE8v1917MgoT8U0sMizZHVjnuH.jpg" alt="Abdallah Yehya - AI Engineer" fill className="object-cover" priority sizes="(max-width: 768px) 90vw, 400px" />
           </div>
-          <div className="portrait-note"><Sparkles size={20} aria-hidden="true" /><span>From an idea to a working system.<small>Machine learning · Engineering · Product</small></span></div>
+          <div className="portrait-caption"><span><strong>Abdallah Yehya Soliman</strong><small>AI Engineer & Data Scientist</small></span><span className="portrait-icon" aria-hidden="true"><Code2 size={22} /></span></div>
         </div>
       </section>
-      <div className="skill-strip"><div className="max-w-5xl mx-auto px-6"><span>BUILT WITH CURIOSITY</span><span>Machine Learning</span><span>LLM Applications</span><span>Computer Vision</span><span>Full-stack Engineering</span></div></div>
+      <div className="skill-strip"><div className="max-w-5xl mx-auto px-6"><span>FOCUS AREAS</span><span>Machine Learning</span><span>LLM Applications</span><span>Computer Vision</span><span>Full-stack Engineering</span></div></div>
+
+      {/* Selected Work Section */}
+      <section id="work" className="max-w-5xl mx-auto px-6 py-20 border-t border-slate-200">
+        <div className="work-heading mb-12">
+          <p className="text-sm font-semibold tracking-[0.2em] text-blue-700 mb-4">01 / SELECTED WORK</p>
+          <h3 className="text-4xl md:text-5xl font-bold tracking-tight mb-5">Selected work<span className="blue-period">.</span></h3>
+          <p className="work-lead">I build systems that make difficult work feel simple.</p>
+          <p className="text-lg text-slate-600 leading-relaxed">These projects are not just demos. Each one started with a messy, real-world problem and became an exercise in making AI reliable, useful, and safe enough to ship.</p>
+        </div>
+        <div className="project-list">
+          {projects.map((project, index) => {
+            const isOpen = openProject === project.id
+            return (
+              <article key={project.id} className={`project-row ${isOpen ? 'is-open' : ''}`}>
+                <button type="button" onClick={() => setOpenProject(isOpen ? null : project.id)} aria-expanded={isOpen} aria-controls={`project-${project.id}`} className="project-toggle">
+                  <span className="project-number">{String(index + 1).padStart(2, '0')}</span>
+                  <span className="project-title"><span>{project.title}</span><small>{project.subtitle}</small></span>
+                  <span className="project-expand"><span>{isOpen ? 'Close details' : 'View details'}</span>{isOpen ? <Minus size={19} aria-hidden="true" /> : <Plus size={19} aria-hidden="true" />}</span>
+                </button>
+                <div className="project-overview">
+                  <p className="project-summary">{project.mainIdea}</p>
+                  <div className="project-tags">{project.technologies.map(tech => <span key={tech}>{tech}</span>)}</div>
+                  <div className="project-links">
+                    {project.github && <a href={project.github} target="_blank" rel="noopener noreferrer">View GitHub repo <ArrowUpRight size={15} aria-hidden="true" /></a>}
+                    {project.deployed && <a href={project.deployed} target="_blank" rel="noopener noreferrer">Open deployed project <ArrowUpRight size={15} aria-hidden="true" /></a>}
+                  </div>
+                </div>
+                <div id={`project-${project.id}`} hidden={!isOpen} className="project-details">
+                  <div className="project-case-study">
+                    <div><h4>The problem</h4><p>{project.problem}</p></div>
+                    <div><h4>The solution</h4><p>{project.solution}</p></div>
+                  </div>
+                  {!project.github && !project.deployed && <p className="project-pending">GitHub and deployment links will appear here once added</p>}
+                </div>
+              </article>
+            )
+          })}
+        </div>
+      </section>
 
       {/* About Section */}
-      <section className="max-w-5xl mx-auto px-6 py-16 border-t border-slate-200">
-        <h3 className="text-3xl font-bold tracking-tight mb-8"><span className="section-index">01 / ABOUT</span>A little about me.</h3>
+      <section id="about" className="about-section max-w-5xl mx-auto px-6 py-16 border-t border-slate-200">
+        <h3 className="text-3xl font-bold tracking-tight mb-8"><span className="section-index">02 / ABOUT</span>Engineering with purpose.</h3>
         <div className="grid md:grid-cols-2 gap-12">
           <div>
             <p className="text-lg text-slate-600 leading-relaxed mb-6">
@@ -317,88 +355,36 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* Selected Work Section */}
-      <section id="work" className="max-w-5xl mx-auto px-6 py-20 border-t border-slate-200">
-        <div className="max-w-2xl mb-12">
-          <p className="text-sm font-semibold tracking-[0.2em] text-blue-700 mb-4">02 / SELECTED WORK</p>
-          <h3 className="text-4xl md:text-5xl font-bold tracking-tight mb-5">I build systems that make difficult work feel simple.</h3>
-          <p className="text-lg text-slate-600 leading-relaxed">These projects are not just demos. Each one started with a messy, real-world problem and became an exercise in making AI reliable, useful, and safe enough to ship.</p>
-        </div>
-        <div className="project-grid">
-          {projects.map((project, index) => {
-            const isOpen = openProject === project.id
-            return (
-              <article key={project.id} className={`project-card ${isOpen ? 'is-open' : ''}`}>
-                <button type="button" onClick={() => setOpenProject(isOpen ? null : project.id)} aria-expanded={isOpen} aria-controls={`project-${project.id}`} className="project-toggle w-full text-left flex items-center justify-between gap-5 group">
-                  <span className="flex items-start gap-5">
-                    <span className="text-sm font-bold text-slate-400 pt-1">0{index + 1}</span>
-                    <span>
-                      <span className="block text-2xl font-bold text-slate-900 group-hover:text-blue-700 transition-colors">{project.title}</span>
-                      <span className="block text-slate-600 mt-1">{project.subtitle}</span>
-                    </span>
-                  </span>
-                  <ChevronDown className={`shrink-0 transition-transform ${isOpen ? 'rotate-180' : ''}`} aria-hidden="true" />
-                </button>
-                <p className="project-summary">{project.mainIdea}</p>
-                <div className="project-tags">{project.technologies.map(tech => <span key={tech}>{tech}</span>)}</div>
-                {isOpen && (
-                  <div id={`project-${project.id}`} className="project-details mt-7 animate-in fade-in slide-in-from-top-2 duration-300">
-                    <div className="grid gap-6 mb-7">
-                      <div><h5 className="text-xs font-bold tracking-[0.18em] text-blue-700 mb-2">MAIN IDEA</h5><p className="text-slate-700 leading-relaxed">{project.mainIdea}</p></div>
-                      <div><h5 className="text-xs font-bold tracking-[0.18em] text-blue-700 mb-2">THE PROBLEM</h5><p className="text-slate-700 leading-relaxed">{project.problem}</p></div>
-                      <div><h5 className="text-xs font-bold tracking-[0.18em] text-blue-700 mb-2">THE SOLUTION</h5><p className="text-slate-700 leading-relaxed">{project.solution}</p></div>
-                    </div>
-                    <div className="flex flex-wrap gap-2 mb-5">{project.technologies.map((tech) => <span key={tech} className="px-3 py-1 bg-slate-100 text-slate-700 text-xs rounded-full font-semibold">{tech}</span>)}</div>
-                    <div className="flex flex-wrap gap-4 text-sm font-semibold">
-                      {project.github && <a href={project.github} target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:underline">View GitHub repo ↗</a>}
-                      {project.deployed && <a href={project.deployed} target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:underline">Open deployed project ↗</a>}
-                      {!project.github && !project.deployed && <span className="text-slate-500 font-normal">GitHub and deployment links will appear here once added</span>}
-                    </div>
-                  </div>
-                )}
-              </article>
-            )
-          })}
-        </div>
-      </section>
-
       {/* Experience Section */}
       <section id="experience" className="max-w-5xl mx-auto px-6 py-16 border-t border-slate-200">
-        <h3 className="text-3xl font-bold tracking-tight mb-12"><span className="section-index">03 / EXPERIENCE</span>Where I’ve contributed.</h3>
-        <div className="divide-y divide-slate-200 border-y border-slate-200">
-          {experience.map((role, index) => {
-            const isOpen = openExperience === index
-            return <div key={index} className="py-6">
-              <button type="button" onClick={() => setOpenExperience(isOpen ? null : index)} aria-expanded={isOpen} className="w-full text-left flex items-center justify-between gap-4 group">
-                <span><span className="block text-xl font-bold text-slate-900 group-hover:text-blue-700 transition-colors">{role.title}</span><span className="block text-slate-600 font-medium mt-1">{role.company}</span></span>
-                <span className="flex items-center gap-4"><span className="text-sm text-slate-500 whitespace-nowrap">{role.period}</span><ChevronDown className={`shrink-0 transition-transform ${isOpen ? 'rotate-180' : ''}`} aria-hidden="true" /></span>
-              </button>
-              {isOpen && <div className="mt-5 max-w-3xl pl-0 animate-in fade-in slide-in-from-top-2 duration-300"><p className="text-slate-600 leading-relaxed mb-4">{role.description}</p><div className="flex flex-wrap gap-2 mb-4">{role.technologies.map((tech) => <span key={tech} className="px-2 py-1 bg-slate-100 text-slate-700 text-xs rounded font-medium">{tech}</span>)}</div>{role.website && <a href={role.website} target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-blue-700 hover:underline">Visit mbcegypt.com ↗</a>}</div>}
-            </div>
-          })}
+        <h3 className="text-3xl font-bold tracking-tight mb-12"><span className="section-index">03 / EXPERIENCE</span>Experience.</h3>
+        <div className="experience-timeline">
+          {experience.map((role) => (
+            <article key={role.company} className="experience-entry">
+              <div className="experience-meta"><span className="timeline-dot" aria-hidden="true" /><p>{role.period}</p><span>{role.company}</span></div>
+              <div className="experience-content"><h4>{role.title}</h4><p>{role.description}</p><div className="project-tags">{role.technologies.map(tech => <span key={tech}>{tech}</span>)}</div>{role.website && <a className="text-link" href={role.website} target="_blank" rel="noopener noreferrer">Visit mbcegypt.com <ArrowUpRight size={15} aria-hidden="true" /></a>}</div>
+            </article>
+          ))}
         </div>
       </section>
 
-      {/* Education Section */}
-      <section className="max-w-5xl mx-auto px-6 py-16 border-t border-slate-200">
-        <h3 className="text-3xl font-bold tracking-tight mb-8"><span className="section-index">04 / EDUCATION</span>The foundations.</h3>
-        <div className="border-y border-slate-200">
-          <button type="button" onClick={() => setIsEducationOpen(!isEducationOpen)} aria-expanded={isEducationOpen} className="w-full text-left py-6 flex items-center justify-between gap-4 group">
-            <span><span className="block text-xl font-bold text-slate-900 group-hover:text-blue-700 transition-colors">Bachelor&apos;s Degree in Computer Science</span><span className="block text-slate-600 font-medium mt-1">Ain-Shams University, Cairo — 2020–2024</span></span>
-            <ChevronDown className={`shrink-0 transition-transform ${isEducationOpen ? 'rotate-180' : ''}`} aria-hidden="true" />
-          </button>
-          {isEducationOpen && <div className="pb-7 max-w-3xl animate-in fade-in slide-in-from-top-2 duration-300"><p className="text-slate-600 mb-4">GPA: 2.95</p><p className="text-slate-700"><span className="font-semibold">Graduation Project (Grade: A):</span> Smart School System — An end-to-end AI system for student monitoring and safety, combining face recognition, liveness detection, violence detection, and uniform compliance classification using deep learning.</p></div>}
+      <section className="education-section max-w-5xl mx-auto px-6 py-16 border-t border-slate-200">
+        <h3 className="text-3xl font-bold tracking-tight mb-8"><span className="section-index">04 / EDUCATION</span>A solid foundation.</h3>
+        <div className="education-card">
+          <div className="education-icon"><GraduationCap size={27} aria-hidden="true" /></div>
+          <div><h4>Bachelor&apos;s Degree in Computer Science</h4><p className="education-school">Ain-Shams University, Cairo — 2020–2024</p><p className="education-gpa">GPA: 2.95 <span>Graduation Project · Grade A</span></p><p className="education-detail"><strong>Graduation Project (Grade: A):</strong> Smart School System — An end-to-end AI system for student monitoring and safety, combining face recognition, liveness detection, violence detection, and uniform compliance classification using deep learning.</p></div>
         </div>
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="max-w-5xl mx-auto px-6 py-16 border-t border-slate-200">
-        <h3 className="text-3xl font-bold tracking-tight mb-4"><span className="section-index">05 / CONTACT</span>Let&apos;s build something useful.</h3>
+      <section id="contact" className="contact-section max-w-5xl mx-auto px-6 py-16 border-t border-slate-200">
+        <div className="contact-intro">
+        <h3 className="text-3xl font-bold tracking-tight mb-4"><span className="section-index">05 / CONTACT</span>Let&apos;s work together.</h3>
         <p className="text-lg text-slate-600 mb-12">
           Interested in discussing an opportunity? Send me a message or reach out directly.
         </p>
 
-        <div className="grid md:grid-cols-2 gap-12">
+        <div className="contact-direct">
           <div>
             <h4 className="font-semibold text-slate-900 mb-4">Direct Contact</h4>
             <div className="space-y-4">
@@ -434,6 +420,8 @@ export default function Portfolio() {
             </div>
           </div>
 
+        </div>
+        </div>
           <form onSubmit={handleSubmit} className="contact-form space-y-4" aria-busy={isSubmitting}>
             <div>
               <label htmlFor="name" className="block text-sm font-medium text-slate-900 mb-2">
@@ -511,7 +499,6 @@ export default function Portfolio() {
               {isSubmitting ? 'Sending...' : 'Send Message'}
             </button>
           </form>
-        </div>
       </section>
 
       </main>
