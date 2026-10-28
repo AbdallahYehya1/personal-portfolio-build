@@ -287,10 +287,39 @@ export default function Portfolio() {
       </section>
       <div className="skill-strip"><div className="max-w-5xl mx-auto px-6"><span>FOCUS AREAS</span><span>Machine Learning</span><span>LLM Applications</span><span>Computer Vision</span><span>Full-stack Engineering</span></div></div>
 
+      {/* About Section */}
+      <section id="about" className="about-section max-w-5xl mx-auto px-6 py-16 border-t border-slate-200">
+        <h3 className="text-3xl font-bold tracking-tight mb-8"><span className="section-index">01 / ABOUT</span>Engineering with purpose.</h3>
+        <div className="grid md:grid-cols-2 gap-12">
+          <div>
+            <p className="text-lg text-slate-600 leading-relaxed mb-6">
+              I am a Computer Science graduate and AI engineer who enjoys taking ambiguous, high-friction problems and turning them into dependable products. My work sits at the intersection of machine learning, backend engineering, and thoughtful user experience: I do not stop at a model or a prototype; I think through the data, the failure cases, the security boundaries, and how a real person will use the result.
+            </p>
+            <p className="text-slate-600 leading-relaxed">
+              I have built agentic job-search workflows, natural-language database systems, computer-vision models for school safety, market-intelligence tools, and privacy-aware wellness applications. These projects taught me to make AI useful rather than ornamental: ground outputs in metadata, validate what the system is allowed to do, design for uncertain data, and keep the product understandable. I am now looking for opportunities where I can contribute across the full lifecycle—from problem framing and system design to implementation, evaluation, and deployment.
+            </p>
+          </div>
+          <div className="space-y-6">
+            <div>
+              <h4 className="font-semibold text-slate-900 mb-2">Core Strengths</h4>
+              <p className="text-slate-600">
+                Practical machine learning, LLM and agentic workflows, full-stack web development, backend foundations, database reasoning, and collaborative problem solving.
+              </p>
+            </div>
+            <div>
+              <h4 className="font-semibold text-slate-900 mb-2">Technologies</h4>
+              <p className="text-slate-600">
+                Python, TypeScript, Next.js, FastAPI, PostgreSQL, Supabase, TensorFlow, PyTorch, and modern AI frameworks.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Selected Work Section */}
       <section id="work" className="max-w-5xl mx-auto px-6 py-20 border-t border-slate-200">
         <div className="work-heading mb-12">
-          <p className="text-sm font-semibold tracking-[0.2em] text-blue-700 mb-4">01 / SELECTED WORK</p>
+          <p className="text-sm font-semibold tracking-[0.2em] text-blue-700 mb-4">02 / SELECTED WORK</p>
           <h3 className="text-4xl md:text-5xl font-bold tracking-tight mb-5">Selected work<span className="blue-period">.</span></h3>
           <p className="work-lead">I build systems that make difficult work feel simple.</p>
           <p className="text-lg text-slate-600 leading-relaxed">These projects are not just demos. Each one started with a messy, real-world problem and became an exercise in making AI reliable, useful, and safe enough to ship.</p>
@@ -323,35 +352,6 @@ export default function Portfolio() {
               </article>
             )
           })}
-        </div>
-      </section>
-
-      {/* About Section */}
-      <section id="about" className="about-section max-w-5xl mx-auto px-6 py-16 border-t border-slate-200">
-        <h3 className="text-3xl font-bold tracking-tight mb-8"><span className="section-index">02 / ABOUT</span>Engineering with purpose.</h3>
-        <div className="grid md:grid-cols-2 gap-12">
-          <div>
-            <p className="text-lg text-slate-600 leading-relaxed mb-6">
-              I am a Computer Science graduate and AI engineer who enjoys taking ambiguous, high-friction problems and turning them into dependable products. My work sits at the intersection of machine learning, backend engineering, and thoughtful user experience: I do not stop at a model or a prototype; I think through the data, the failure cases, the security boundaries, and how a real person will use the result.
-            </p>
-            <p className="text-slate-600 leading-relaxed">
-              I have built agentic job-search workflows, natural-language database systems, computer-vision models for school safety, market-intelligence tools, and privacy-aware wellness applications. These projects taught me to make AI useful rather than ornamental: ground outputs in metadata, validate what the system is allowed to do, design for uncertain data, and keep the product understandable. I am now looking for opportunities where I can contribute across the full lifecycle—from problem framing and system design to implementation, evaluation, and deployment.
-            </p>
-          </div>
-          <div className="space-y-6">
-            <div>
-              <h4 className="font-semibold text-slate-900 mb-2">Core Strengths</h4>
-              <p className="text-slate-600">
-                Practical machine learning, LLM and agentic workflows, full-stack web development, backend foundations, database reasoning, and collaborative problem solving.
-              </p>
-            </div>
-            <div>
-              <h4 className="font-semibold text-slate-900 mb-2">Technologies</h4>
-              <p className="text-slate-600">
-                Python, TypeScript, Next.js, FastAPI, PostgreSQL, Supabase, TensorFlow, PyTorch, and modern AI frameworks.
-              </p>
-            </div>
-          </div>
         </div>
       </section>
 
