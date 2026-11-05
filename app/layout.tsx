@@ -1,13 +1,16 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import './globals.css'
+import { SiteHeader } from '@/components/site-header'
+import { SiteFooter } from '@/components/site-footer'
+import { overviewIntroduction } from '@/lib/portfolio-data'
 
 export const metadata: Metadata = {
   title: 'Abdallah Yehya Portfolio',
-  description: 'Abdallah Yehya Portfolio — Data Scientist and AI Engineer building practical AI systems, agentic workflows, NLP and computer vision applications, and full-stack products.',
+  description: overviewIntroduction,
   openGraph: {
     title: 'Abdallah Yehya Portfolio',
-    description: 'Data science, AI systems, NLP, computer vision, LLM workflows, and full-stack applications by Abdallah Yehya.',
+    description: overviewIntroduction,
     type: 'website',
   },
   icons: {
@@ -25,7 +28,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en">
       <body className="antialiased">
-        {children}
+        <div className="portfolio min-h-screen text-slate-900"><a href="#main" className="skip-link">Skip to content</a><SiteHeader />{children}<SiteFooter /></div>
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>
