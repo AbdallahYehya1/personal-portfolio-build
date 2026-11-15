@@ -13,4 +13,6 @@ export const portraitUrl =
 export const profileLinks = [
   'https://github.com/AbdallahYehya1',
   'https://www.linkedin.com/in/abdallah-yehya',
+  'https://www.kaggle.com/abdallahyehya20',
+  'https://huggingface.co/abdallah-yehya',
 ]
