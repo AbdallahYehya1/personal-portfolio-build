@@ -2,7 +2,7 @@ export const siteUrl = 'https://abdallah-yehya-portfolio.vercel.app'
 
 export const siteName = 'Abdallah Yehya'
 
-export const siteTitle = 'Abdallah Yehya | AI Engineer & Data Scientist'
+export const siteTitle = 'Abdallah Yehya | AI Engineer & Full-Stack Developer'
 
 export const siteDescription =
   'Abdallah Yehya (Abdallah Yehya Soliman) is an AI Engineer and Data Scientist from Giza, Egypt, building practical AI systems: LLM and agentic workflows, NL2SQL, NLP, computer vision, and full-stack applications.'

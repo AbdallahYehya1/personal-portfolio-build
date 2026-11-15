@@ -2,6 +2,8 @@ import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import { portraitUrl, profileLinks, siteDescription, siteName, siteTitle, siteUrl } from '@/lib/site'
 import './globals.css'
+import { SiteHeader } from '@/components/site-header'
+import { SiteFooter } from '@/components/site-footer'
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -16,6 +18,8 @@ export const metadata: Metadata = {
     'عبدالله يحيى',
     'AI Engineer',
     'Data Scientist',
+    'Full-Stack Developer',
+    'Software Engineer',
     'Machine Learning',
     'LLM',
     'NL2SQL',
@@ -37,7 +41,7 @@ export const metadata: Metadata = {
     description: siteDescription,
     firstName: 'Abdallah',
     lastName: 'Yehya',
-    images: [{ url: portraitUrl, alt: 'Abdallah Yehya - AI Engineer & Data Scientist' }],
+    images: [{ url: portraitUrl, alt: 'Abdallah Yehya - AI Engineer & Full-Stack Developer' }],
   },
   twitter: {
     card: 'summary_large_image',
@@ -70,14 +74,14 @@ const personJsonLd = {
       alternateName: ['Abdallah Yehya Soliman', 'عبدالله يحيى'],
       givenName: 'Abdallah',
       familyName: 'Yehya',
-      jobTitle: 'AI Engineer & Data Scientist',
+      jobTitle: ['AI Engineer', 'Data Scientist', 'Full-Stack Developer'],
       description: siteDescription,
       url: siteUrl,
       image: portraitUrl,
       sameAs: profileLinks,
       address: { '@type': 'PostalAddress', addressLocality: 'Giza', addressCountry: 'EG' },
       alumniOf: { '@type': 'CollegeOrUniversity', name: 'Ain Shams University' },
-      knowsAbout: ['Artificial Intelligence', 'Data Science', 'Machine Learning', 'Large Language Models', 'NLP', 'Computer Vision'],
+      knowsAbout: ['Artificial Intelligence', 'Data Science', 'Machine Learning', 'Large Language Models', 'NLP', 'Computer Vision', 'Full-Stack Development', 'Software Engineering'],
     },
     {
       '@type': 'WebSite',
@@ -106,7 +110,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd).replace(/</g, '\\u003c') }}
         />
-        {children}
+        <div className="portfolio min-h-screen text-slate-900"><a href="#main" className="skip-link">Skip to content</a><SiteHeader />{children}<SiteFooter /></div>
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>
