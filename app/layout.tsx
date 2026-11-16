@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     description: siteDescription,
     firstName: 'Abdallah',
     lastName: 'Yehya',
-    images: [{ url: portraitUrl, alt: 'Abdallah Yehya - AI Engineer & Full-Stack Developer' }],
+    images: [{ url: portraitUrl, width: 1200, height: 1600, alt: 'Abdallah Yehya - AI Engineer & Full-Stack Developer' }],
   },
   twitter: {
     card: 'summary_large_image',
@@ -54,9 +54,16 @@ export const metadata: Metadata = {
     ? { google: process.env.GOOGLE_SITE_VERIFICATION }
     : undefined,
   icons: {
-    icon: '/icon.svg',
-    apple: '/apple-icon.png',
+    icon: [
+      { url: '/favicon.ico', sizes: '48x48' },
+      { url: '/icon.svg', type: 'image/svg+xml' },
+      { url: '/icon-96.png', sizes: '96x96', type: 'image/png' },
+      { url: '/icon-192.png', sizes: '192x192', type: 'image/png' },
+    ],
+    shortcut: '/favicon.ico',
+    apple: { url: '/apple-icon.png', sizes: '180x180' },
   },
+  manifest: '/manifest.webmanifest',
 }
 
 export const viewport: Viewport = {

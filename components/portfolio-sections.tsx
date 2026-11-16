@@ -23,7 +23,7 @@ export function Hero({ lines, description, subtitle, overview = false }: { lines
     </div>
     <div className="portrait-wrap">
       <div className="portrait-backdrop" aria-hidden="true" />
-      <div className="portrait"><Image src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/IMG-20240703-WA0087-EpSPKE8v1917MgoT8U0sMizZHVjnuH.jpg" alt="Abdallah Yehya Soliman" fill className="object-cover" priority sizes="(max-width: 768px) 90vw, 400px" /></div>
+      <div className="portrait"><Image src="/abdallah-yehya.jpg" alt="Abdallah Yehya Soliman, AI Engineer and Full-Stack Developer" fill className="object-cover" priority sizes="(max-width: 768px) 90vw, 400px" /></div>
       <div className="portrait-caption"><span><strong>Abdallah Yehya Soliman</strong><small>{subtitle}</small></span><span className="portrait-icon" aria-hidden="true"><Code2 size={22} /></span></div>
     </div>
   </section>
