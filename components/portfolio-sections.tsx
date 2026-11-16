@@ -8,8 +8,9 @@ export function Hero({ lines, description, subtitle, overview = false }: { lines
   return <section id={overview ? undefined : 'summary'} className="hero max-w-5xl mx-auto px-6">
     <div className="hero-copy">
       <p className="eyebrow"><span className="status-dot" /> {overview ? 'OPEN TO OPPORTUNITIES' : '01 / PROFESSIONAL SUMMARY'}</p>
-      <p className="hero-intro">Hi, I’m Abdallah.</p>
-      <h1>{lines.map((line, index) => index === lines.length - 1 ? <span key={line} className="hero-title-line">{line}</span> : <span key={line} className="hero-title-line hero-title-primary">{line}</span>)}</h1>
+      <p className="hero-intro">Hi, I’m</p>
+      <h1 className="hero-name">Abdallah Yehya</h1>
+      <p className="hero-roles">{lines.map((line, index) => index === lines.length - 1 ? <span key={line} className="hero-title-line">{line}</span> : <span key={line} className="hero-title-line hero-title-primary">{line}</span>)}</p>
       <p className="hero-description">{description}</p>
       <p className="location"><MapPin size={15} aria-hidden="true" /> Agouza, Giza, Egypt</p>
       <div className="hero-actions">
