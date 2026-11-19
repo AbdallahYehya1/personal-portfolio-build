@@ -70,7 +70,7 @@ export const aiProfile: CareerProfile = {
         "Gemini",
         "Groq"
       ],
-      "github": "https://github.com/AbdallahYehya1/JobHunt",
+      "github": "",
       "demo": "https://job-hunt-pilot.vercel.app/"
     },
     {
@@ -229,7 +229,7 @@ export const softwareProfile: CareerProfile = {
         "SQLAlchemy",
         "Alembic"
       ],
-      "github": "https://github.com/AbdallahYehya1/JobHunt",
+      "github": "",
       "demo": "https://job-hunt-pilot.vercel.app/"
     },
     {

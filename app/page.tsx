@@ -4,9 +4,6 @@ import { aiProfile, softwareProfile, overviewIntroduction } from '@/lib/portfoli
 import { Hero, FocusStrip, Education } from '@/components/portfolio-sections'
 import { ContactSection } from '@/components/contact-section'
 
-// Repos that are private on GitHub: link only their live demo.
-const privateRepos = new Set(['jobhunt'])
-
 export default function OverviewPage() {
   return <main id="main">
     <Hero overview lines={['AI Engineer.', 'Full-Stack Developer.']} description={overviewIntroduction} subtitle="AI Engineer & Full-Stack Developer" />
@@ -30,7 +27,7 @@ export default function OverviewPage() {
       <div className="career-paths">{aiProfile.projects.map(project => <article key={project.id} className="career-path project-card">
         <span className="section-index">{project.subtitle}</span><h3>{project.title}</h3><p>{project.summary}</p>
         <div className="project-card-links">
-          {project.github && !privateRepos.has(project.id) && <a className="text-link" href={project.github} target="_blank" rel="noopener noreferrer">Code <ArrowUpRight size={15} aria-hidden="true" /></a>}
+          {project.github && <a className="text-link" href={project.github} target="_blank" rel="noopener noreferrer">Code <ArrowUpRight size={15} aria-hidden="true" /></a>}
           {project.demo && <a className="text-link" href={project.demo} target="_blank" rel="noopener noreferrer">Live demo <ArrowUpRight size={15} aria-hidden="true" /></a>}
         </div>
       </article>)}</div>
