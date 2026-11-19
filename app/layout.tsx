@@ -1,6 +1,6 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
-import { portraitUrl, profileLinks, siteDescription, siteName, siteTitle, siteUrl } from '@/lib/site'
+import { ogImage, portraitUrl, profileLinks, siteDescription, siteName, siteTitle, siteUrl } from '@/lib/site'
 import './globals.css'
 import { SiteHeader } from '@/components/site-header'
 import { SiteFooter } from '@/components/site-footer'
@@ -41,13 +41,13 @@ export const metadata: Metadata = {
     description: siteDescription,
     firstName: 'Abdallah',
     lastName: 'Yehya',
-    images: [{ url: portraitUrl, width: 1200, height: 1600, alt: 'Abdallah Yehya - AI Engineer & Full-Stack Developer' }],
+    images: [{ ...ogImage, alt: 'Abdallah Yehya - AI Engineer & Full-Stack Developer' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: siteTitle,
     description: siteDescription,
-    images: [portraitUrl],
+    images: [ogImage.url],
   },
   // Set GOOGLE_SITE_VERIFICATION in Vercel to the code from Google Search Console.
   verification: process.env.GOOGLE_SITE_VERIFICATION
@@ -78,7 +78,7 @@ const personJsonLd = {
       '@type': 'Person',
       '@id': `${siteUrl}/#person`,
       name: 'Abdallah Yehya',
-      alternateName: ['Abdallah Yehya Soliman', 'عبدالله يحيى'],
+      alternateName: ['Abdallah Yehya Soliman', 'Abdallah Yahya', 'عبدالله يحيى'],
       givenName: 'Abdallah',
       familyName: 'Yehya',
       jobTitle: ['AI Engineer', 'Data Scientist', 'Full-Stack Developer'],

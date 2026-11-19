@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { Send } from 'lucide-react'
 
-export function ContactSection() {
+export function ContactSection({ index = '04' }: { index?: string }) {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
   const [formMessage, setFormMessage] = useState('')
@@ -42,7 +42,7 @@ export function ContactSection() {
   return (
       <section id="contact" className="contact-section max-w-5xl mx-auto px-6 py-16 border-t border-slate-200">
         <div className="contact-intro">
-        <h2 className="section-heading text-3xl font-bold tracking-tight mb-4"><span className="section-index">04 / CONTACT</span>Let&apos;s work together.</h2>
+        <h2 className="section-heading text-3xl font-bold tracking-tight mb-4"><span className="section-index">{index} / CONTACT</span>Let&apos;s work together.</h2>
         <p className="text-lg text-slate-600 mb-12">
           Interested in discussing an opportunity? Send me a message or reach out directly.
         </p>
