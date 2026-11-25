@@ -37,3 +37,23 @@ A success response means Resend accepted the email, not guaranteed inbox deliver
 - `npm run build`
 - `node --test tests/contact.test.mjs`
 
+
+## Content and search settings
+
+- The site is one AI-first portfolio. Home-page content (statement, results table, experience,
+  education, skills, CVs) lives in `lib/portfolio-data.ts`; projects and their case studies
+  (`/projects/<slug>`: results, pipeline, screenshot, limits) live in `lib/case-studies.ts`.
+  Keep each number next to the data it was measured on.
+- `/ai-engineer` and `/software-engineer` were merged into the home page and redirect permanently
+  (308) to `/`, set in `next.config.mjs`.
+- Design tokens (colours, type, layout) are at the top of `app/globals.css`. Green is reserved for
+  measured results. The font is IBM Plex Sans, self-hosted under `app/fonts/` (SIL Open Font License).
+- Page titles, descriptions, name spellings and profile links live in `lib/site.ts`. Change
+  `contentUpdatedAt` there whenever the content changes; the sitemap reports it.
+- Structured data (Person, WebSite, ProfilePage, project pages, breadcrumbs) is built in
+  `lib/structured-data.ts` and rendered by each page.
+- `GOOGLE_SITE_VERIFICATION`: the code from Google Search Console's HTML-tag method.
+- `NEXT_PUBLIC_SITE_URL`: set it after connecting a custom domain (for example
+  `https://abdallahyehya.com`), then redeploy. Canonical links, the sitemap and structured data
+  all follow it. In Vercel, also redirect the `vercel.app` domain to the custom domain.
+- Vercel Analytics loads only on Vercel (`VERCEL` is set there), so local runs stay error-free.

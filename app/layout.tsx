@@ -1,9 +1,22 @@
 import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
-import { ogImage, portraitUrl, profileLinks, siteDescription, siteName, siteTitle, siteUrl } from '@/lib/site'
+import localFont from 'next/font/local'
+import { ogImage, siteDescription, siteName, siteTitle, siteUrl } from '@/lib/site'
 import './globals.css'
 import { SiteHeader } from '@/components/site-header'
 import { SiteFooter } from '@/components/site-footer'
+
+// IBM Plex Sans, self-hosted (SIL Open Font License, see app/fonts/ibm-plex-sans/OFL.txt).
+const plex = localFont({
+  src: [
+    { path: './fonts/ibm-plex-sans/ibm-plex-sans-latin-400-normal.woff2', weight: '400', style: 'normal' },
+    { path: './fonts/ibm-plex-sans/ibm-plex-sans-latin-500-normal.woff2', weight: '500', style: 'normal' },
+    { path: './fonts/ibm-plex-sans/ibm-plex-sans-latin-600-normal.woff2', weight: '600', style: 'normal' },
+  ],
+  display: 'swap',
+  variable: '--font-plex',
+  fallback: ['Segoe UI', 'Arial', 'sans-serif'],
+})
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -12,21 +25,6 @@ export const metadata: Metadata = {
   applicationName: siteName,
   authors: [{ name: 'Abdallah Yehya', url: siteUrl }],
   creator: 'Abdallah Yehya',
-  keywords: [
-    'Abdallah Yehya',
-    'Abdallah Yehya Soliman',
-    'عبدالله يحيى',
-    'AI Engineer',
-    'Data Scientist',
-    'Full-Stack Developer',
-    'Software Engineer',
-    'Machine Learning',
-    'LLM',
-    'NL2SQL',
-    'Computer Vision',
-    'Egypt',
-    'Portfolio',
-  ],
   alternates: { canonical: '/' },
   robots: {
     index: true,
@@ -37,6 +35,7 @@ export const metadata: Metadata = {
     type: 'profile',
     url: siteUrl,
     siteName,
+    locale: 'en_US',
     title: siteTitle,
     description: siteDescription,
     firstName: 'Abdallah',
@@ -71,54 +70,18 @@ export const viewport: Viewport = {
   themeColor: '#ffffff',
 }
 
-const personJsonLd = {
-  '@context': 'https://schema.org',
-  '@graph': [
-    {
-      '@type': 'Person',
-      '@id': `${siteUrl}/#person`,
-      name: 'Abdallah Yehya',
-      alternateName: ['Abdallah Yehya Soliman', 'Abdallah Yahya', 'عبدالله يحيى'],
-      givenName: 'Abdallah',
-      familyName: 'Yehya',
-      jobTitle: ['AI Engineer', 'Data Scientist', 'Full-Stack Developer'],
-      description: siteDescription,
-      url: siteUrl,
-      image: portraitUrl,
-      sameAs: profileLinks,
-      address: { '@type': 'PostalAddress', addressLocality: 'Giza', addressCountry: 'EG' },
-      alumniOf: { '@type': 'CollegeOrUniversity', name: 'Ain Shams University' },
-      knowsAbout: ['Artificial Intelligence', 'Data Science', 'Machine Learning', 'Large Language Models', 'NLP', 'Computer Vision', 'Full-Stack Development', 'Software Engineering'],
-    },
-    {
-      '@type': 'WebSite',
-      '@id': `${siteUrl}/#website`,
-      url: siteUrl,
-      name: siteName,
-      alternateName: 'Abdallah Yehya Portfolio',
-      publisher: { '@id': `${siteUrl}/#person` },
-    },
-    {
-      '@type': 'ProfilePage',
-      '@id': `${siteUrl}/#profile`,
-      url: siteUrl,
-      name: siteTitle,
-      mainEntity: { '@id': `${siteUrl}/#person` },
-      isPartOf: { '@id': `${siteUrl}/#website` },
-    },
-  ],
-}
-
+// Structured data (Person, WebSite and each page's own nodes) is rendered by every page
+// through pageGraph() in lib/structured-data.ts.
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
-      <body className="antialiased">
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd).replace(/</g, '\\u003c') }}
-        />
-        <div className="portfolio min-h-screen text-slate-900"><a href="#main" className="skip-link">Skip to content</a><SiteHeader />{children}<SiteFooter /></div>
-        {process.env.NODE_ENV === 'production' && <Analytics />}
+    <html lang="en" className={plex.variable}>
+      <body>
+        <a href="#main" className="skip-link">Skip to content</a>
+        <SiteHeader />
+        {children}
+        <SiteFooter />
+        {/* The analytics script only exists on Vercel; elsewhere it would 404. */}
+        {process.env.VERCEL && <Analytics />}
       </body>
     </html>
   )
