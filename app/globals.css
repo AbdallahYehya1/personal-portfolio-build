@@ -75,17 +75,6 @@ section[id] { scroll-margin-top: 84px; }
 .intro-profiles a { display: inline-flex; align-items: center; gap: 4px; }
 .intro-portrait img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; object-position: center 35%; border-radius: 4px; border: 1px solid var(--rule); }
 
-/* Results ledger */
-.ledger { width: 100%; margin-top: 56px; border-collapse: collapse; border-top: 2px solid var(--ink); }
-.ledger caption { caption-side: top; text-align: left; padding-bottom: 12px; font-size: 15px; font-weight: 600; color: var(--ink); }
-.ledger thead th { padding: 10px 16px 10px 0; text-align: left; font-size: 13px; font-weight: 500; color: var(--ink-3); border-bottom: 1px solid var(--rule); }
-.ledger tbody th, .ledger td { padding: 18px 16px 18px 0; text-align: left; vertical-align: baseline; border-bottom: 1px solid var(--rule); }
-.ledger tbody th { width: 22%; font-size: 16px; font-weight: 600; }
-.ledger tbody th a { color: var(--ink); }
-.ledger tbody th a:hover { color: var(--accent); }
-.ledger td { color: var(--ink-2); font-size: 15px; }
-.ledger .result-value { display: inline-block; min-width: 3.6em; margin-right: 8px; font-size: 26px; }
-.ledger-measured { width: 32%; color: var(--ink-3); }
 .result-value { color: var(--result); font-weight: 600; letter-spacing: -.01em; font-variant-numeric: tabular-nums; line-height: 1.15; }
 
 /* Sections */
@@ -222,7 +211,6 @@ section[id] { scroll-margin-top: 84px; }
   .section > :not(.section-head) { grid-column: 1; }
   .contact { grid-template-columns: 1fr; }
   .nav-desktop { gap: 20px; }
-  .ledger tbody th { width: 26%; }
 }
 
 /* Small screens */
@@ -235,14 +223,6 @@ section[id] { scroll-margin-top: 84px; }
   .intro-portrait img { aspect-ratio: 1; border-radius: 50%; object-position: center 30%; }
   .intro-role { font-size: 18px; }
   .intro-statement { font-size: 17px; }
-  .ledger, .ledger tbody, .ledger tr, .ledger th, .ledger td, .ledger caption { display: block; width: 100%; }
-  .ledger thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
-  .ledger tr { padding: 16px 0; border-bottom: 1px solid var(--rule); }
-  .ledger tbody th, .ledger td { padding: 0; border: 0; }
-  .ledger tbody th { width: auto; margin-bottom: 4px; }
-  .ledger td + td { margin-top: 4px; font-size: 14px; }
-  .ledger-measured { width: auto; }
-  .ledger .result-value { font-size: 24px; }
   .results, .results-large, .skills, .edu-grid { grid-template-columns: 1fr; }
   .role, .case-section { grid-template-columns: 1fr; gap: 6px; }
   .work-title { font-size: 21px; }

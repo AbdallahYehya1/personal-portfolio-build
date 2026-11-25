@@ -6,7 +6,7 @@ export const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://abdallah-ye
 export const siteName = 'Abdallah Yehya'
 
 // Update this date whenever the portfolio content changes; the sitemap reports it to search engines.
-export const contentUpdatedAt = '2026-11-24'
+export const contentUpdatedAt = '2026-11-25'
 
 export const siteTitle = 'Abdallah Yehya Portfolio – AI Engineer & Full-Stack Developer'
 

@@ -13,24 +13,6 @@ export const workOrder = ['nl2sql', 'ai-wellness-egypt', 'jobhunt', 'fair-price-
 // Order of the /projects page and of the case studies' "Next project" links. Fraud Detection is last.
 export const projectsOrder = ['nl2sql', 'ai-wellness-egypt', 'jobhunt', 'smart-school', 'fair-price-egypt', 'fraud-detection']
 
-// The results table in the hero: each number with what it measures and the data it was measured on.
-export const resultsLedger = [
-  {
-    slug: 'nl2sql',
-    project: 'Agentic NL2SQL',
-    result: '29/32',
-    what: 'questions answered correctly end to end',
-    measuredOn: 'a held-out benchmark frozen before its first run',
-  },
-  {
-    slug: 'ai-wellness-egypt',
-    project: 'AI Wellness Egypt',
-    result: '93.3%',
-    what: 'retrieval hit@4, up from 28.3% with one shared index',
-    measuredOn: '60 held-out English and Arabic queries',
-  },
-]
-
 export type Role = {
   title: string; company: string; period: string; details: string[]; technologies: string[]; website?: string
 }

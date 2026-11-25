@@ -8,7 +8,6 @@ import { profiles, siteTitle } from '@/lib/site'
 import { pageGraph, profilePage } from '@/lib/structured-data'
 import { ContactSection } from '@/components/contact-section'
 import { JsonLd } from '@/components/json-ld'
-import { ResultsLedger } from '@/components/results-ledger'
 import { WorkList } from '@/components/work-list'
 
 const work = workOrder.flatMap(slug => caseStudies.filter(study => study.slug === slug))
@@ -39,7 +38,6 @@ export default function HomePage() {
             sizes="(max-width: 767px) 112px, 280px" width={720} height={960} fetchPriority="high" decoding="async" alt="Portrait of Abdallah Yehya Soliman" />
         </div>
       </div>
-      <ResultsLedger />
     </section>
 
     <section id="work" className="section container" aria-labelledby="work-heading">
